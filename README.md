@@ -1,6 +1,33 @@
 # baseball
 그룹프로젝트 #3
 
+# 기획
+
+<p align="center">
+<img width="300" alt="1" src="https://user-images.githubusercontent.com/45817559/117403396-0f579600-af43-11eb-889d-d6de72f47ebe.png">
+<img width="300" alt="2" src="https://user-images.githubusercontent.com/45817559/117403416-17afd100-af43-11eb-833c-da3d68a9aeb3.png">
+</p>
+
+- 게임 룰은 실제 야구 게임의 규칙을 토대로 한다.
+- 변경사항이 있다면 게임에서는 1루타만 존재한다.
+- 공격과 수비가 비동기적으로 동작한다.
+- 지명타자 없이 투수가 타격을 한다.
+
+## 배포 주소 
+
+http://ec2-3-35-10-144.ap-northeast-2.compute.amazonaws.com/games       
+http://ec2-3-35-10-144.ap-northeast-2.compute.amazonaws.com/games/3       
+http://ec2-3-35-10-144.ap-northeast-2.compute.amazonaws.com/api/
+
+## 백로그
+- iOS: https://github.com/PizzaCola-K/baseball/projects/2
+- BE: https://github.com/PizzaCola-K/baseball/projects/3
+
+## 회의 
+회의 일정은 매일 오후 2시~3시로 한다.
+
+https://github.com/PizzaCola-K/baseball/wiki/%5BiOS%5D-%EC%9E%91%EC%97%85-%EB%8B%A8%EC%9C%84-%EB%85%BC%EC%9D%98
+
 
 - iOS
   - ZG
