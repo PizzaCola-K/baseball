@@ -25,7 +25,9 @@ http://ec2-3-35-10-144.ap-northeast-2.compute.amazonaws.com/api/
 
 ## 회의 
 회의 일정은 매일 오후 2시~3시로 한다.
+
 회의의 주제는 iOS에서 나눈 작업단위로 진행합니다.
+
 https://github.com/PizzaCola-K/baseball/wiki/%5BiOS%5D-%EC%9E%91%EC%97%85-%EB%8B%A8%EC%9C%84-%EB%85%BC%EC%9D%98
 
 ## 팀소개
@@ -100,4 +102,9 @@ issue:
 <img width="300" alt="3" src="https://user-images.githubusercontent.com/64049682/117406154-a3c3f780-af47-11eb-9a5d-ed605a2a06a7.png">
 <img width="300" alt="4" src="https://user-images.githubusercontent.com/64049682/117405952-5fd0f280-af47-11eb-8856-37e3cf87c547.png">
 </p>
+
 - [BE] :
+  - 팀에서 API 논의
+  - 논의한 API에 맞춰 정보를 담을 객체 설계 (BaseballGame, Team)
+  - 객체의 내용을 DB에 저장할 수 있도록 Spring Data jdbc에 맞춰 DB schema 설계
+
