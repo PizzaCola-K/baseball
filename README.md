@@ -25,15 +25,15 @@ http://ec2-3-35-10-144.ap-northeast-2.compute.amazonaws.com/api/
 
 ## 회의 
 회의 일정은 매일 오후 2시~3시로 한다.
-
+회의의 주제는 iOS에서 나눈 작업단위로 진행합니다.
 https://github.com/PizzaCola-K/baseball/wiki/%5BiOS%5D-%EC%9E%91%EC%97%85-%EB%8B%A8%EC%9C%84-%EB%85%BC%EC%9D%98
 
-
+## 팀소개
 - iOS
-  - ZG
-  - BMO
+  - ZG 🏋️‍♂️
+  - BMO 🐷🐖
 - Backend
-  - K
+  - K 🍕🥤
 
 ## 브랜치 전략
 
@@ -92,3 +92,9 @@ issue:
 # ------------------
 
 ```
+
+## 진행상황
+
+- [iOS] :
+
+- [BE] :
