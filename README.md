@@ -96,8 +96,8 @@ issue:
 ## 진행상황
 
 - [iOS] :
-<p align="center">
-<img width="150" alt="3" src="https://user-images.githubusercontent.com/64049682/117405952-5fd0f280-af47-11eb-8856-37e3cf87c547.png">
-<img width="150" alt="4" src="https://user-images.githubusercontent.com/64049682/117406154-a3c3f780-af47-11eb-9a5d-ed605a2a06a7.png">
+<p align="left">
+<img width="300" alt="3" src="https://user-images.githubusercontent.com/64049682/117405952-5fd0f280-af47-11eb-8856-37e3cf87c547.png">
+<img width="300" alt="4" src="https://user-images.githubusercontent.com/64049682/117406154-a3c3f780-af47-11eb-9a5d-ed605a2a06a7.png">
 </p>
 - [BE] :
