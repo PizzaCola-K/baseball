@@ -39,21 +39,8 @@ https://github.com/PizzaCola-K/baseball/wiki/%5BiOS%5D-%EC%9E%91%EC%97%85-%EB%8B
 
 ## 브랜치 전략
 
-```
-upstream - team-7
 
-
-                     ------------{feature}-----             review/BE--------
-                     |                   PR   |               |
-            ------------ dev/BE---------------------------------------
-            |                                                      |--{feature-2}
-main -------------------------------------------------------
-           |
-           -------- dev/iOS------------
-                                    |
-                                  review/iOS
-
-```
+<img width="900" alt="5" src="https://user-images.githubusercontent.com/64049682/117411667-ca396100-af4e-11eb-88c1-82d57f01b883.png">
 
 - 최상위에 iOS와 BE 폴더를 만든다.
 - main 브랜치는 배포용
