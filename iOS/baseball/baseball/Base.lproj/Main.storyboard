@@ -314,23 +314,31 @@
                                             <constraint firstAttribute="height" constant="30" id="tdp-Vn-OtQ"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3d-un-dze" customClass="FieldView" customModule="baseball" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="100" width="414" height="231"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="jS5-lR-cBu" secondAttribute="trailing" constant="374" id="3Yi-5N-R97"/>
+                                    <constraint firstAttribute="trailing" secondItem="U3d-un-dze" secondAttribute="trailing" id="5Yr-bC-TlG"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="eG0-kN-wVl" secondAttribute="trailing" constant="374" id="5sS-v8-lzY"/>
                                     <constraint firstItem="hXo-JN-M4d" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PZl-hv-nvX" secondAttribute="leading" constant="20" symbolic="YES" id="5up-El-LZh"/>
                                     <constraint firstAttribute="trailing" secondItem="gg0-6b-Og2" secondAttribute="trailing" constant="16" id="6z5-pT-QGk"/>
                                     <constraint firstItem="pWn-YE-0IR" firstAttribute="leading" secondItem="eG0-kN-wVl" secondAttribute="trailing" constant="5" id="8qg-EZ-QTa"/>
                                     <constraint firstItem="S4c-jc-0rQ" firstAttribute="top" secondItem="jS5-lR-cBu" secondAttribute="bottom" id="BVN-ep-luT"/>
+                                    <constraint firstItem="U3d-un-dze" firstAttribute="top" secondItem="eG0-kN-wVl" secondAttribute="bottom" id="Dcx-I2-0lv"/>
                                     <constraint firstItem="hXo-JN-M4d" firstAttribute="trailing" secondItem="gg0-6b-Og2" secondAttribute="trailing" id="F8B-2W-w4m"/>
                                     <constraint firstItem="gg0-6b-Og2" firstAttribute="top" secondItem="PZl-hv-nvX" secondAttribute="top" constant="8" id="HV7-sn-A49"/>
                                     <constraint firstItem="EvI-kf-Hj4" firstAttribute="leading" secondItem="S4c-jc-0rQ" secondAttribute="trailing" constant="5" id="Iea-ld-uN0"/>
+                                    <constraint firstAttribute="bottom" secondItem="U3d-un-dze" secondAttribute="bottom" id="LCM-vM-RDN"/>
                                     <constraint firstItem="gg0-6b-Og2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PZl-hv-nvX" secondAttribute="leading" constant="20" symbolic="YES" id="O6B-qV-Ud1"/>
                                     <constraint firstItem="S4c-jc-0rQ" firstAttribute="leading" secondItem="PZl-hv-nvX" secondAttribute="leading" constant="20" id="UMY-sE-ccn"/>
                                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="S4c-jc-0rQ" secondAttribute="trailing" constant="374" id="WY4-yX-gMc"/>
                                     <constraint firstItem="jS5-lR-cBu" firstAttribute="leading" secondItem="PZl-hv-nvX" secondAttribute="leading" constant="20" id="Z4H-v6-32M"/>
                                     <constraint firstItem="EvI-kf-Hj4" firstAttribute="top" secondItem="bGN-OZ-luq" secondAttribute="bottom" constant="1" id="fYq-CN-KOM"/>
+                                    <constraint firstItem="U3d-un-dze" firstAttribute="leading" secondItem="PZl-hv-nvX" secondAttribute="leading" id="ghq-Lq-9rK"/>
                                     <constraint firstItem="jS5-lR-cBu" firstAttribute="top" secondItem="PZl-hv-nvX" secondAttribute="top" constant="10" id="jkW-2p-TNx"/>
                                     <constraint firstItem="eG0-kN-wVl" firstAttribute="top" secondItem="S4c-jc-0rQ" secondAttribute="bottom" id="oaO-5y-Hcr"/>
                                     <constraint firstAttribute="width" secondItem="PZl-hv-nvX" secondAttribute="height" multiplier="1:0.8" id="pQF-f5-7MD"/>
@@ -438,6 +446,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" id="zU1-Im-sE3"/>
                     <connections>
+                        <outlet property="fieldView" destination="U3d-un-dze" id="B3b-Hg-Yaj"/>
                         <outlet property="inningInfoView" destination="PZl-hv-nvX" id="RqU-6q-BME"/>
                         <outlet property="pitchingHistoryTableView" destination="hQ6-dm-PD7" id="EsK-47-VFt"/>
                     </connections>
