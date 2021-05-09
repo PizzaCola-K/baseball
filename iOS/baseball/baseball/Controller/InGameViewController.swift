@@ -21,6 +21,5 @@ class InGameViewController: UIViewController {
         self.inningInfoView.applyBallCount(strike: 2, ball: 2, out: 1)
         self.inningInfoView.applyBallCount(strike: 0, ball: 0, out: 2)
     }
-    
 }
 
