@@ -25,15 +25,15 @@ class GameSelectViewController: UIViewController, GameSelectViewControllerManage
     override func loadView() {
         super.loadView()
         self.matchupCell.set(delegate: self)
-        self.networkManager.requestbaseballGame(url: URLManager.get(url: .gameList), httpMethod: .get) { result in
-            print(result)
-        }
         playOpacityAnimation()
         playMoveAnimation()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        networkManager.getRequest(needs: JSONRequestDTO.self) { (result) in
+            print(result)
+        }
     }
     
     func moveToGameView() {

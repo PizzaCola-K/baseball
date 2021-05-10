@@ -2,11 +2,11 @@
 import Foundation
 
 struct InningScore: Decodable {
-    private var homeScore: [Int]
-    private var awayScore: [Int]
+    private var home: [Int]
+    private var away: [Int]
     
     init() {
-        self.homeScore = []
-        self.awayScore = []
+        self.home = []
+        self.away = []
     }
 }

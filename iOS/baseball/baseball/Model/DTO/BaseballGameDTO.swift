@@ -7,9 +7,13 @@
 
 import Foundation
 
+struct JSONRequestDTO: Decodable {
+    let game: GameDTO
+}
+
 struct GameDTO: Decodable {
-    let homeTeam: TeamDTO
-    let awayTeam: TeamDTO
+    let home: TeamDTO
+    let away: TeamDTO
     
     let inning: Int
     let state: String
@@ -19,6 +23,6 @@ struct GameDTO: Decodable {
     let out: Int
     
     let baseState: [Bool]
-    let history: [PitchingHistory]
+    let history: [String]
     let inningScore: InningScore
 }

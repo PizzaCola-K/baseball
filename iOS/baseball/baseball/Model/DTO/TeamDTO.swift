@@ -10,6 +10,6 @@ import Foundation
 struct TeamDTO: Decodable {
     let name: String
     let score: Int
-    let player: [Player]
+    let players: [Player]
     let pitcher: Pitcher
 }

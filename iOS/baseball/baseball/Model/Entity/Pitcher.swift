@@ -1,12 +1,12 @@
 
 import Foundation
 
-struct Pitcher:Decodable {
-    private var playerNumber: Int
+struct Pitcher: Decodable {
+    private var number: Int
     private var pitches: Int
     
     init() {
-        self.playerNumber = 0
+        self.number = 0
         self.pitches = 0
     }
 }
