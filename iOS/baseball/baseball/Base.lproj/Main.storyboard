@@ -507,12 +507,22 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3d-un-dze" customClass="FieldView" customModule="baseball" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="100" width="414" height="231"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3cq-JO-G35">
+                                                <rect key="frame" x="192" y="83" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="ball"/>
+                                                <connections>
+                                                    <action selector="ball:" destination="wTF-5l-Qj5" eventType="touchUpInside" id="XQk-b9-h6W"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37E-cZ-Zsp">
-                                        <rect key="frame" x="184" y="150" width="46" height="30"/>
+                                        <rect key="frame" x="188" y="150" width="38" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="strike"/>
                                         <connections>
                                             <action selector="Pitch:" destination="wTF-5l-Qj5" eventType="touchUpInside" id="glM-4b-1tT"/>
                                         </connections>
