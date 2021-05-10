@@ -34,12 +34,29 @@ class InGameViewController: UIViewController {
         return animationView
     }()
     
+    let ballAnimation: AnimationView = {
+        let animationView = AnimationView(name: "ball")
+        animationView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
+        animationView.tag = 100
+        animationView.contentMode = .scaleAspectFit
+        return animationView
+    }()
+    
     @IBAction func Pitch(_ sender: Any) {
         self.view.addSubview(strikeAnimation)
         strikeAnimation.play { [weak self] _ in
             self?.removeAnimationView()
         }
     }
+    
+    @IBAction func ball(_ sender: Any) {
+        self.view.addSubview(ballAnimation)
+        ballAnimation.play { [weak self] _ in
+            self?.removeAnimationView()
+        }
+    }
+    
+    
     private func removeAnimationView() {
         if let tag = self.view.viewWithTag(100) {
             tag.removeFromSuperview()
