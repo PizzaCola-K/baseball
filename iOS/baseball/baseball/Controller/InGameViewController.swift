@@ -1,10 +1,3 @@
-//
-//  InGameViewController.swift
-//  baseball
-//
-//  Created by 박정하 on 2021/05/04.
-//
-
 import UIKit
 import Lottie
 
@@ -14,16 +7,18 @@ class InGameViewController: UIViewController {
     @IBOutlet weak var inningInfoView: InningInfoView!
     @IBOutlet weak var fieldView: FieldView!
     
-    let animationView: AnimationView = {
-        let animationView = AnimationView(name: "data")
-        animationView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
-        animationView.tag = 100
-        animationView.contentMode = .scaleAspectFit
-        return animationView
-    }()
+    private var dataSource: PitchingHistoryDataSource
     
-    private var dataSource = PitchingHistoryDataSource()
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.dataSource = PitchingHistoryDataSource()
+        super.init(nibName: nil, bundle: nil)
+    }
     
+    required init?(coder: NSCoder) {
+        self.dataSource = PitchingHistoryDataSource()
+        super.init(coder: coder)
+    }
+        
     override func viewDidLoad() {
         //        super.viewDidLoad()
         dataSource.setupDataSource(tableView: pitchingHistoryTableView)
@@ -31,9 +26,17 @@ class InGameViewController: UIViewController {
         self.inningInfoView.applyBallCount(strike: 0, ball: 0, out: 2)
     }
     
+    let strikeAnimation: AnimationView = {
+        let animationView = AnimationView(name: "strike")
+        animationView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
+        animationView.tag = 100
+        animationView.contentMode = .scaleAspectFit
+        return animationView
+    }()
+    
     @IBAction func Pitch(_ sender: Any) {
-        self.view.addSubview(animationView)
-        animationView.play { [weak self] _ in
+        self.view.addSubview(strikeAnimation)
+        strikeAnimation.play { [weak self] _ in
             self?.removeAnimationView()
         }
     }
