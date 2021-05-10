@@ -37,22 +37,39 @@ class InningInfoView: UIView {
     }
     
     func applyBallCount(strike: Int, ball: Int, out: Int) {
-        for index in 0..<strike {
+        let maxStrikeCount = 2
+        let maxBallCount = 3
+        let maxOutCount = 2
+        
+        for index in 0..<maxStrikeCount {
             if let emptyBall = self.ballCountViews[0].layer.sublayers?[index] {
-                emptyBall.backgroundColor = UIColor.systemYellow.cgColor
+                if index < strike {
+                    emptyBall.backgroundColor = UIColor.systemYellow.cgColor
+                } else {
+                    emptyBall.backgroundColor = UIColor.systemGray4.cgColor
+                }
             }
         }
-        
-        for index in 0..<ball {
+
+        for index in 0..<maxBallCount {
             if let emptyBall = self.ballCountViews[1].layer.sublayers?[index] {
-                emptyBall.backgroundColor = UIColor.systemGreen.cgColor
+                if index < ball {
+                    emptyBall.backgroundColor = UIColor.systemYellow.cgColor
+                } else {
+                    emptyBall.backgroundColor = UIColor.systemGray4.cgColor
+                }
             }
         }
         
-        for index in 0..<out {
+        for index in 0..<maxOutCount {
             if let emptyBall = self.ballCountViews[2].layer.sublayers?[index] {
-                emptyBall.backgroundColor = UIColor.systemRed.cgColor
+                if index < out {
+                    emptyBall.backgroundColor = UIColor.systemYellow.cgColor
+                } else {
+                    emptyBall.backgroundColor = UIColor.systemGray4.cgColor
+                }
             }
         }
     }
+    
 }
