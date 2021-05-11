@@ -24,6 +24,7 @@ public class AuthController {
 
     private final String GITHUB_ACCESS_TOKEN_URI = "https://github.com/login/oauth/access_token";
     private final String GITHUB_USER_URI = "https://api.github.com/user";
+    private final String ISSUER;
 
     private final String CLIENT_ID;
     private final String CLIENT_SECRET;
@@ -31,6 +32,7 @@ public class AuthController {
     public AuthController(Environment environment) {
         CLIENT_ID = environment.getProperty("github.client.id");
         CLIENT_SECRET = environment.getProperty("github.client.secret");
+        ISSUER = environment.getProperty("jwt.issuer");
     }
 
     @GetMapping
@@ -52,7 +54,7 @@ public class AuthController {
             return JWT.create()
                     .withClaim("login", user.getLogin())
                     .withClaim("name", user.getName())
-                    .withIssuer("jwtTest")
+                    .withIssuer(ISSUER)
                     .sign(algorithm);
         } catch (JWTCreationException exception) {
             //Invalid Signing configuration / Couldn't convert Claims.
