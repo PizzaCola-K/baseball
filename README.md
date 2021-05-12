@@ -15,9 +15,9 @@
 
 ## 배포 주소 
 
-http://ec2-3-35-10-144.ap-northeast-2.compute.amazonaws.com/games       
-http://ec2-3-35-10-144.ap-northeast-2.compute.amazonaws.com/games/3       
-http://ec2-3-35-10-144.ap-northeast-2.compute.amazonaws.com/api/
+http://3.36.239.71/games      
+
+http://3.36.239.71/apidocs/
 
 ## 백로그
 - iOS: https://github.com/PizzaCola-K/baseball/projects/2
