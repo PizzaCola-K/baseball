@@ -8,22 +8,36 @@ class InGameViewController: UIViewController {
     @IBOutlet weak var fieldView: FieldView!
     
     private var dataSource: PitchingHistoryDataSource
+    private var delegate: VCDelegate!
+    private var inGameModel: InGameModel
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.dataSource = PitchingHistoryDataSource()
+        self.inGameModel = InGameModel()
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
         self.dataSource = PitchingHistoryDataSource()
+        self.inGameModel = InGameModel()
         super.init(coder: coder)
     }
-        
+    
     override func viewDidLoad() {
-        //        super.viewDidLoad()
+                super.viewDidLoad()
         dataSource.setupDataSource(tableView: pitchingHistoryTableView)
         self.inningInfoView.applyBallCount(strike: 2, ball: 2, out: 1)
         self.inningInfoView.applyBallCount(strike: 0, ball: 0, out: 2)
+        let vc = tabBarController?.viewControllers![1] as! ScoreViewController
+        self.delegate = vc
+        NetworkManager.getRequest(needs: JSONRequestDTO.self) { (result) in
+            print(result)
+        }
+        print("====================\(inGameModel.printt())")
+    }
+    
+    func decide(team: MyTeam) {
+        self.inGameModel.set(team: team)
     }
     
     let strikeAnimation: AnimationView = {

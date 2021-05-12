@@ -31,7 +31,7 @@ class MatchUpCell: UIView {
     }
     
     @objc private func didTapCell(_ gesture: UITapGestureRecognizer) {
-        self.delegate.moveToGameView()
+        self.delegate.moveToTeamSelectView()
     }
     
     internal func updateCellLabel(homeTeam: String, awayTeam: String, gameNumber: String) {

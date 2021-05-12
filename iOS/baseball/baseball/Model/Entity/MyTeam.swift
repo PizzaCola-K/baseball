@@ -10,6 +10,7 @@ import Foundation
 enum MyTeam: String {
     case Home
     case Away
+    case None
     
     var Value: String {
         return rawValue
