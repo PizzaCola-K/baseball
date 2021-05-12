@@ -6,38 +6,66 @@
 //
 
 import UIKit
+import OctoKit
+import AuthenticationServices
 
-class GameSelectViewController: UIViewController, GameSelectViewControllerManageable{
+class GameSelectViewController: UIViewController, GameSelectViewControllerManageable {
   
     @IBOutlet weak var matchupCell: MatchUpCell!
-    private let networkManager: NetworkManager
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        self.networkManager = NetworkManager()
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
-        self.networkManager = NetworkManager()
         super.init(coder: coder)
     }
     
-    override func loadView() {
-        super.loadView()
+    override func viewDidLoad() {
+        super.viewDidLoad()
         self.matchupCell.set(delegate: self)
         playOpacityAnimation()
         playMoveAnimation()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        networkManager.getRequest(needs: JSONRequestDTO.self) { (result) in
-            print(result)
+    // 질문하기
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        guard let tabBarViewController = segue.destination as? UITabBarController,
+              let tabbarFirstViewController = tabBarViewController.viewControllers?[0] as? InGameViewController else {
+            return
+        }
+        guard let selectedTeamInfo = sender as? MyTeam else {
+            return
+        }
+        tabbarFirstViewController.decide(team: selectedTeamInfo)
+    }
+    
+    func moveToTeamSelectView() {
+        let teamSelectView = Bundle.main.loadNibNamed("TeamSelectView", owner: self, options: nil)?.first as! TeamSelectView
+        teamSelectView.frame = self.view.frame
+        self.view.addSubview(teamSelectView)
+        dismissTeamSelectView(view: teamSelectView)
+        decideTeam(view: teamSelectView)
+    }
+    
+    func decideTeam(view: TeamSelectView) {
+        view.pressedTeam { (myTeam) -> (Void) in
+            self.performSegue(withIdentifier: "toInGame", sender: myTeam)
         }
     }
     
-    func moveToGameView() {
-        self.performSegue(withIdentifier: "toInGame", sender: nil)
+    func dismissTeamSelectView(view: TeamSelectView) {
+        view.pressedCancel { (bool) -> (Void) in
+            if bool {
+                DispatchQueue.main.async {
+                    UIView.transition(with: view.cardView, duration: 0.8, options: .transitionCurlUp, animations: nil) { (_) in
+                        view.removeFromSuperview()
+                    }
+                    view.cardView.alpha = 0
+                }
+            }
+        }
     }
     
     private func playOpacityAnimation() -> Void {
@@ -78,4 +106,3 @@ class GameSelectViewController: UIViewController, GameSelectViewControllerManage
 //        myCalayer.position = CGPoint(x: myCalayer.position.x, y: view.bounds.size.height - view.bounds.size.width / 4)
     }
 }
-

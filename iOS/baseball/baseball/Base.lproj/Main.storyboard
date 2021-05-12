@@ -110,7 +110,7 @@
         <!--Item 2-->
         <scene sceneID="3Oj-ig-GQ0">
             <objects>
-                <viewController id="jNJ-h5-3qc" customClass="ScoreViewController" customModule="baseball" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="scoreViewController" id="jNJ-h5-3qc" customClass="ScoreViewController" customModule="baseball" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Oel-Kf-in5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

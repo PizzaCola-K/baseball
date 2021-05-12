@@ -7,7 +7,14 @@
 
 import UIKit
 
-class ScoreViewController: UIViewController {
+protocol VCDelegate {
+    func send(string: String)
+}
+
+class ScoreViewController: UIViewController, VCDelegate {
+    func send(string: String) {
+    }
+    
     @IBOutlet weak var homeScore: UIStackView!
     @IBOutlet weak var awayScore: UIStackView!
     @IBOutlet weak var customLabel: UILabel!
@@ -26,9 +33,13 @@ class ScoreViewController: UIViewController {
         super.init(coder: coder)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.playersScoreTableView.delegate = scoreTableViewdelegate
+    }
+    
     override func loadView() {
         super.loadView()
-        self.playersScoreTableView.delegate = scoreTableViewdelegate
     }
     
     func isAttack(myTeam: MyTeam) -> Bool {
