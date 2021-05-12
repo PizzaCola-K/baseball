@@ -20,7 +20,7 @@ class ScoreViewController: UIViewController, VCDelegate {
     @IBOutlet weak var customLabel: UILabel!
     @IBOutlet weak var playersScoreTableView: UITableView!
     
-    private var tempInt: Int = 0 //뷰가 추가되는 효과를 보기 위한 임시 변수
+//    private var scoreModel: ScoreViewEntity
     private let scoreTableViewdelegate: ScoreTableViewDelegate
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {

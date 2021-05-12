@@ -10,8 +10,7 @@ import UIKit
 class ScoreTableViewDelegate: NSObject, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var headerViewLabels: [UILabel] = [] //UIView와 UILabel 중 어떤 게 더 용량이 클까?
-        let headerWidth: CGFloat = tableView.frame.width
-        let headerView: UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: headerWidth, height: 55))
+        let headerView: UIView = UIView()
         headerView.backgroundColor = .lightGray
         for i in 0..<5 {
             let tempLabel = makeLabel(title: HeaderViewLabelTitles.allCases[i].value)
@@ -31,6 +30,10 @@ class ScoreTableViewDelegate: NSObject, UITableViewDelegate {
         }
         
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 35
     }
     
     private func makeLabel(title: String) -> UILabel {

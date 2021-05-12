@@ -30,20 +30,6 @@ struct NetworkManager {
             return rawValue
         }
     }
-
-//    func requestbaseballGame(url: URL?, httpMethod: NetworkManager.httpMethod, completion : @escaping (Result<GameDTO, NetworkError>) -> Void) -> Void{
-//        guard let makedURL: URL = url else { return }
-//        var request: URLRequest = URLRequest.init(url: makedURL)
-//
-//        request.httpMethod = httpMethod.value
-//
-//        URLSession.shared.dataTask(with: request) { data, response, error in
-//
-//            let responseResult = self.checkResponse(response: response)
-//
-//            completion(responseResult)
-//        }.resume()
-//    }
     
     static func getRequest<T:Decodable> (needs dataSet : T.Type, closure : @escaping (Result<T,NetworkError>) -> Void) {
         guard let url = URL.init(string: "http://ec2-3-35-10-144.ap-northeast-2.compute.amazonaws.com/games/3") else {
@@ -53,7 +39,7 @@ struct NetworkManager {
         request.httpMethod = "GET"
 
         URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-            let result = self.decode(form : T.self, data: data)
+            let result = NetworkManager.decode(form : T.self, data: data)
             
             closure(result)
         }).resume()
@@ -72,6 +58,7 @@ struct NetworkManager {
     }
     
     static private func decode<T:Decodable> (form : T.Type, data: Data?) -> Result<T,NetworkError> {
+
         guard let data = data else {
             return .failure(NetworkError.nilResponse)
         }

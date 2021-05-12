@@ -26,7 +26,7 @@ class MatchUpCell: UIView {
         self.addGestureRecognizer(tapGesture)
     }
     
-    internal func set(delegate: GameSelectViewControllerManageable){
+    func set(delegate: GameSelectViewControllerManageable) {
         self.delegate = delegate
     }
     

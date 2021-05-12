@@ -7,6 +7,8 @@ class InGameViewController: UIViewController {
     @IBOutlet weak var inningInfoView: InningInfoView!
     @IBOutlet weak var fieldView: FieldView!
     
+    var str = ""
+    
     private var dataSource: PitchingHistoryDataSource
     private var delegate: VCDelegate!
     private var inGameModel: InGameModel
@@ -24,7 +26,7 @@ class InGameViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-                super.viewDidLoad()
+        super.viewDidLoad()
         dataSource.setupDataSource(tableView: pitchingHistoryTableView)
         self.inningInfoView.applyBallCount(strike: 2, ball: 2, out: 1)
         self.inningInfoView.applyBallCount(strike: 0, ball: 0, out: 2)
@@ -69,11 +71,20 @@ class InGameViewController: UIViewController {
             self?.removeAnimationView()
         }
     }
-    
-    
     private func removeAnimationView() {
         if let tag = self.view.viewWithTag(100) {
             tag.removeFromSuperview()
+        }
+    }
+    
+    private func requestNetwork() -> Void {
+        NetworkManager.getRequest(needs: JSONRequestDTO.self) { (result) in
+            switch result {
+            case .success(let data):
+                print("썽꽁!")
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 }
