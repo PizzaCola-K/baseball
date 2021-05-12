@@ -9,4 +9,8 @@ struct PitchingHistory: Decodable {
         self.pitch = ""
         self.status = ""
     }
+    
+    func updatePitchingHistory(pitch: String, status: String) {
+        
+    }
 }

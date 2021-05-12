@@ -3,7 +3,7 @@ import Foundation
 
 struct InningInfo {
     private var currentInning: Int
-    private(set) var attackTeam: String //ScoreViewController isAttack함수를 사용하기 위해서 임시 컨트롤 access
+    private(set) var attackTeam: String
     private var batter: Int
     private var strike: Int
     private var ball: Int
@@ -19,4 +19,13 @@ struct InningInfo {
         self.out = 0
         self.pitchingHistory = PitchingHistory()
     }
+    
+    mutating func updateData(currentInning: Int, attackTeam: String, batter: Int, strike: Int, ball: Int, out: Int) {
+        self.currentInning = currentInning
+        self.attackTeam = attackTeam
+        self.batter = batter
+        self.strike = strike
+        self.ball = ball
+        self.out = out
+    }//history update 필요!!!
 }

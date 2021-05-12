@@ -32,7 +32,7 @@ struct NetworkManager {
     }
     
     static func getRequest<T:Decodable> (needs dataSet : T.Type, closure : @escaping (Result<T,NetworkError>) -> Void) {
-        guard let url = URL.init(string: "http://ec2-3-35-10-144.ap-northeast-2.compute.amazonaws.com/games/3") else {
+        guard let url = URL.init(string: "http://3.36.239.71/games/1") else {
             return
         }
         var request = URLRequest(url: url)

@@ -6,9 +6,7 @@ class InGameViewController: UIViewController {
     @IBOutlet weak var pitchingHistoryTableView: UITableView!
     @IBOutlet weak var inningInfoView: InningInfoView!
     @IBOutlet weak var fieldView: FieldView!
-    
-    var str = ""
-    
+        
     private var dataSource: PitchingHistoryDataSource
     private var delegate: VCDelegate!
     private var inGameModel: InGameModel
@@ -30,12 +28,10 @@ class InGameViewController: UIViewController {
         dataSource.setupDataSource(tableView: pitchingHistoryTableView)
         self.inningInfoView.applyBallCount(strike: 2, ball: 2, out: 1)
         self.inningInfoView.applyBallCount(strike: 0, ball: 0, out: 2)
-        let vc = tabBarController?.viewControllers![1] as! ScoreViewController
-        self.delegate = vc
-        NetworkManager.getRequest(needs: JSONRequestDTO.self) { (result) in
-            print(result)
-        }
-        print("====================\(inGameModel.printt())")
+//        let vc = tabBarController?.viewControllers![1] as! ScoreViewController
+//        self.delegate = vc
+        requestNetwork()
+        
     }
     
     func decide(team: MyTeam) {
@@ -81,7 +77,9 @@ class InGameViewController: UIViewController {
         NetworkManager.getRequest(needs: JSONRequestDTO.self) { (result) in
             switch result {
             case .success(let data):
-                print("썽꽁!")
+                print(data)
+                self.inGameModel.updateGame(data: data)
+                self.inGameModel.확인쓰()
             case .failure(let error):
                 print(error)
             }

@@ -42,10 +42,6 @@ class ScoreViewController: UIViewController, VCDelegate {
         super.loadView()
     }
     
-    func isAttack(myTeam: MyTeam) -> Bool {
-        return myTeam.Value == InningInfo().attackTeam
-    }
-    
     @IBAction func testadd(_ sender: Any) { //공수교대가 일어날 경우 노란뷰가 추가되는 것을 보기 위한 임시 버튼 액션 함수
         self.addLabel(title: "0", ishome: true)
     }
