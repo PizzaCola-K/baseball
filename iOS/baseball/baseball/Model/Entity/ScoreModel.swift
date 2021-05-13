@@ -25,5 +25,6 @@ class ScoreModel {
         self.Away.updateTeamInfo(name: away.name, score: away.score, players: away.players, pitcher: away.pitcher)
         self.inningScore = inningScore
         self.inningInfo.updateattackTeam(attackTeam: attackTeam)
+        NotificationCenter.default.post(name: ScoreModel.updatescoreModel, object: self)
     }
 }

@@ -18,7 +18,7 @@ class PlayerListDataSource {
             cell.LabelCollection[1].text = "\(player.atBat)"
             cell.LabelCollection[2].text = "\(player.hits)"
             cell.LabelCollection[3].text = "\(player.out)"
-            cell.LabelCollection[4].text = "\(player.average)"
+            cell.LabelCollection[4].text = String(format: "%.3f", player.average)
             return cell
         })
         var snapshot = self.dataSource.snapshot()

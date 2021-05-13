@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		56D03935CE20EACF9A78AC37 /* Pods_baseball.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 946EF2F42058E0F0C85C27C6 /* Pods_baseball.framework */; };
+		82266368264D8EAF000C2ABB /* out.json in Resources */ = {isa = PBXBuildFile; fileRef = 82266367264D8EAF000C2ABB /* out.json */; };
+		8226636A264D9224000C2ABB /* hit.json in Resources */ = {isa = PBXBuildFile; fileRef = 82266369264D9224000C2ABB /* hit.json */; };
+		8226636C264D9B0D000C2ABB /* fourball.json in Resources */ = {isa = PBXBuildFile; fileRef = 8226636B264D9B0D000C2ABB /* fourball.json */; };
 		8276F79D26496958000BCAB8 /* strike.json in Resources */ = {isa = PBXBuildFile; fileRef = 8276F79B26496958000BCAB8 /* strike.json */; };
 		8276F7A526496CFF000BCAB8 /* ball.json in Resources */ = {isa = PBXBuildFile; fileRef = 8276F7A426496CFF000BCAB8 /* ball.json */; };
 		827E60342644FA160054F5E2 /* MyTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E60332644FA160054F5E2 /* MyTeam.swift */; };
@@ -52,6 +55,9 @@
 
 /* Begin PBXFileReference section */
 		3C2E63B7C29452CBA0B52A3C /* Pods-baseball.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-baseball.debug.xcconfig"; path = "Target Support Files/Pods-baseball/Pods-baseball.debug.xcconfig"; sourceTree = "<group>"; };
+		82266367264D8EAF000C2ABB /* out.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = out.json; sourceTree = "<group>"; };
+		82266369264D9224000C2ABB /* hit.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hit.json; sourceTree = "<group>"; };
+		8226636B264D9B0D000C2ABB /* fourball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = fourball.json; sourceTree = "<group>"; };
 		8276F79B26496958000BCAB8 /* strike.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = strike.json; sourceTree = "<group>"; };
 		8276F7A426496CFF000BCAB8 /* ball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ball.json; sourceTree = "<group>"; };
 		827E60332644FA160054F5E2 /* MyTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeam.swift; sourceTree = "<group>"; };
@@ -176,7 +182,6 @@
 				82A5CC2B264903F9007C8BC4 /* ScoreTableViewDelegate.swift */,
 				CE96E180264BAAE0001C4F5C /* TeamSelectView.swift */,
 				CE96E184264BE657001C4F5C /* TeamSelectView.xib */,
-				8276F7A62649790A000BCAB8 /* ScoreTableViewCell.swift */,
 				CEB62949264CEA4C005F9DB6 /* TeamScoreView.swift */,
 				CEB6294C264CFF88005F9DB6 /* PlayerInfoView.swift */,
 				CEB6294F264D2DE1005F9DB6 /* HistoryTableViewCell.swift */,
@@ -244,6 +249,9 @@
 			children = (
 				8276F79B26496958000BCAB8 /* strike.json */,
 				8276F7A426496CFF000BCAB8 /* ball.json */,
+				82266367264D8EAF000C2ABB /* out.json */,
+				82266369264D9224000C2ABB /* hit.json */,
+				8226636B264D9B0D000C2ABB /* fourball.json */,
 			);
 			path = Animation;
 			sourceTree = "<group>";
@@ -326,8 +334,11 @@
 				829CFA492640379C00D9F635 /* LaunchScreen.storyboard in Resources */,
 				829CFA462640379C00D9F635 /* Assets.xcassets in Resources */,
 				CE96E185264BE657001C4F5C /* TeamSelectView.xib in Resources */,
+				8226636C264D9B0D000C2ABB /* fourball.json in Resources */,
 				829CFA442640379B00D9F635 /* Main.storyboard in Resources */,
+				8226636A264D9224000C2ABB /* hit.json in Resources */,
 				8276F79D26496958000BCAB8 /* strike.json in Resources */,
+				82266368264D8EAF000C2ABB /* out.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

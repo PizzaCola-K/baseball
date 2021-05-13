@@ -46,8 +46,4 @@ class TeamSelectView: UIView {
     func pressedTeam(closure: @escaping ((MyTeam) -> (Void))) {
         self.selectedTeamCompletion = closure
     }
-    
-    deinit {
-        print("deinit", #function)
-    }
 }

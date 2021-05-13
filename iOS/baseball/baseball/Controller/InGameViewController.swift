@@ -42,13 +42,7 @@ class InGameViewController: UIViewController {
         self.inGameModel.set(team: team)
     }
     
-    let strikeAnimation: AnimationView = {
-        let animationView = AnimationView(name: "strike")
-        animationView.frame = CGRect(x: 0, y: 0, width: 400, height: 400)
-        animationView.tag = 100
-        animationView.contentMode = .scaleAspectFit
-        return animationView
-    }()
+    let lottieAnimationView = AnimationView()
     
     let ballAnimation: AnimationView = {
         let animationView = AnimationView(name: "ball")
@@ -59,10 +53,8 @@ class InGameViewController: UIViewController {
     }()
     
     @IBAction func Pitch(_ sender: Any) {
-        self.view.addSubview(strikeAnimation)
-        strikeAnimation.play { [weak self] _ in
-            self?.removeAnimationView()
-        }
+//        self.view.addSubview(strikeAnimation)
+//
     }
     
     @IBAction func ball(_ sender: Any) {
@@ -72,7 +64,7 @@ class InGameViewController: UIViewController {
         }
     }
     private func removeAnimationView() {
-        if let tag = self.view.viewWithTag(100) {
+        if let tag = self.fieldView.viewWithTag(100) {
             tag.removeFromSuperview()
         }
     }
@@ -157,19 +149,15 @@ class InGameViewController: UIViewController {
         let pitch = self.inGameModel.inningInfo.pitchingHistory[0].pitch
         switch pitch {
         case PitchingHistory.Pitch.STRIKE.value:
-            self.strikeAnimation.animationSpeed = 1.3
-            self.view.addSubview(strikeAnimation)
-            self.pitchButton.isHidden = true
-            strikeAnimation.play { [weak self] _ in
-                self?.removeAnimationView()
-                self?.pitchButton.isHidden = false
-            }
-//        case Pitch.BALL.value:
-//            return Pitch.BALL
-//        case Pitch.OUT.value:
-//            return Pitch.OUT
-//        case Pitch.FOUR_BALL.value:
-//            return Pitch.FOUR_BALL
+            addAnimationView(string: "strike")
+        case PitchingHistory.Pitch.BALL.value:
+            addAnimationView(string: "ball")
+        case PitchingHistory.Pitch.OUT.value:
+            addAnimationView(string: "out")
+        case PitchingHistory.Pitch.HIT.value:
+            addAnimationView(string: "hit")
+        case PitchingHistory.Pitch.FOUR_BALL.value:
+            addAnimationView(string: "fourball")
         default:
             break
         }
@@ -192,6 +180,20 @@ class InGameViewController: UIViewController {
                     self.requestNetwork()
                 }
             }
+        }
+    }
+            
+    private func addAnimationView(string: String) {
+        self.lottieAnimationView.frame = CGRect(x: 0, y: 0, width: self.fieldView.frame.width, height: self.fieldView.frame.height)
+        lottieAnimationView.animation = Animation.named(string)
+        lottieAnimationView.contentMode = .scaleAspectFit
+        lottieAnimationView.tag = 100
+        lottieAnimationView.animationSpeed = 1.3
+        self.fieldView.addSubview(lottieAnimationView)
+        self.pitchButton.isHidden = true
+        lottieAnimationView.play { [weak self] _ in
+            self?.removeAnimationView()
+            self?.pitchButton.isHidden = false
         }
     }
 }

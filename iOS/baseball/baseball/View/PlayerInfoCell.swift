@@ -9,6 +9,4 @@ import UIKit
 
 class playerInfoCell: UITableViewCell {
     @IBOutlet var LabelCollection: [UILabel]!
-    
-    
 }

@@ -18,6 +18,7 @@ class ScoreViewController: UIViewController, ScoreViewControllerManageable {
     @IBOutlet weak var customLabel: UILabel!
     @IBOutlet weak var playersScoreTableView: UITableView!
     @IBOutlet weak var teamSegmentControl: UISegmentedControl!
+    @IBOutlet weak var teamScoreView: TeamScoreView!
     
     private let scoreTableViewdelegate: ScoreTableViewDelegate
     private let playerListDataSource: PlayerListDataSource
@@ -39,28 +40,18 @@ class ScoreViewController: UIViewController, ScoreViewControllerManageable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.playersScoreTableView.isUserInteractionEnabled = false
         self.playerListDataSource.setupDataSource(tableView: playersScoreTableView)
         self.playersScoreTableView.delegate = scoreTableViewdelegate
+        self.playerListDataSource.applySnapshot(players: scoreModel.Away.players)
         self.teamSegmentControl.addTarget(self, action: #selector(tableViewSnapShot), for: .valueChanged)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateScoreViews), name: ScoreModel.updatescoreModel, object: scoreModel)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-    }
-    
-    @IBAction func testadd(_ sender: Any) { //공수교대가 일어날 경우 노란뷰가 추가되는 것을 보기 위한 임시 버튼 액션 함수
-        self.addLabel(title: "0", ishome: true)
-    }
-    
-    func addLabel(title: String, ishome: Bool) {
-        let tempLabel: UILabel = UILabel()
-        tempLabel.translatesAutoresizingMaskIntoConstraints = false
-        if ishome {
-            homeScore.addArrangedSubview(tempLabel)
-            tempLabel.widthAnchor.constraint(equalTo: customLabel.widthAnchor, multiplier: 1).isActive = true
-            tempLabel.heightAnchor.constraint(equalTo: tempLabel.widthAnchor, multiplier: 1).isActive = true
-            tempLabel.backgroundColor = .yellow
-        }
+        self.teamScoreView.applyTeamScore(homeName: self.scoreModel.Home.name, homeScore: self.scoreModel.Home.score, awayName: self.scoreModel.Away.name, awayScore: self.scoreModel.Away.score)
+        ScoreViewSetup()
     }
     
     func initScoreModel(with data: JSONRequestDTO) {
@@ -75,4 +66,39 @@ class ScoreViewController: UIViewController, ScoreViewControllerManageable {
             self.playerListDataSource.applySnapshot(players: scoreModel.Home.players)
         }
     }
+    
+    private func ScoreViewSetup() {
+        while self.homeScore.subviews.count != self.scoreModel.inningScore.home.count {
+            let tempLabel: UILabel = UILabel()
+            tempLabel.translatesAutoresizingMaskIntoConstraints = false
+            homeScore.addArrangedSubview(tempLabel)
+            tempLabel.textAlignment = .center
+            tempLabel.widthAnchor.constraint(equalTo: customLabel.widthAnchor, multiplier: 1).isActive = true
+            tempLabel.heightAnchor.constraint(equalTo: tempLabel.widthAnchor, multiplier: 1).isActive = true
+        }
+        while self.awayScore.subviews.count != self.scoreModel.inningScore.away.count {
+            let tempLabel: UILabel = UILabel()
+            tempLabel.translatesAutoresizingMaskIntoConstraints = false
+            awayScore.addArrangedSubview(tempLabel)
+            tempLabel.textAlignment = .center
+            tempLabel.widthAnchor.constraint(equalTo: customLabel.widthAnchor, multiplier: 1).isActive = true
+            tempLabel.heightAnchor.constraint(equalTo: tempLabel.widthAnchor, multiplier: 1).isActive = true
+        }
+        updateScoreViews()
+    }
+    
+    @objc func updateScoreViews() {
+        for i in 0..<homeScore.subviews.count {
+            guard let scoreLabel = self.homeScore.subviews[i] as? UILabel else { return }
+            scoreLabel.text = String(scoreModel.inningScore.home[i])
+        }
+        for i in 0..<awayScore.subviews.count {
+            guard let scoreLabel = self.awayScore.subviews[i] as? UILabel else { return }
+            scoreLabel.text = String(scoreModel.inningScore.away[i])
+        }
+    }
+}
+
+extension ScoreModel {
+    static let updatescoreModel = Notification.Name("updatescoreModel")
 }
