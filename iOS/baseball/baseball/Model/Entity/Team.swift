@@ -2,10 +2,10 @@
 import Foundation
 
 class Team {
-    private var name: String
-    private var score: Int
-    private var players: Players
-    private var pitcher: Pitcher
+    private(set) var name: String
+    private(set) var score: Int
+    private(set) var players: Players
+    private(set) var pitcher: Pitcher
     
     init(name: String) {
         self.name = name

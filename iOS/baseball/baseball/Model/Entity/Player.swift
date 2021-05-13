@@ -2,6 +2,7 @@
 import Foundation
 
 class Player: Decodable {
+    
     private(set) var name: String
     private(set) var atBat: Int
     private(set) var hits: Int
@@ -22,5 +23,19 @@ class Player: Decodable {
         self.hits = hits
         self.out = out
         self.average = average
+    }
+}
+
+extension Player: Hashable, Equatable {
+    static func == (lhs: Player, rhs: Player) -> Bool {
+        return lhs.name == rhs.name && lhs.atBat == rhs.atBat && lhs.hits == rhs.hits && lhs.out == lhs.out && lhs.average == rhs.average
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(name)
+        hasher.combine(atBat)
+        hasher.combine(hits)
+        hasher.combine(out)
+        hasher.combine(average)
     }
 }

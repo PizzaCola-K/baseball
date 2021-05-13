@@ -8,10 +8,10 @@
 import Foundation
 
 class ScoreModel {
-    private let Home: Team
-    private let Away: Team
-    private var inningScore: InningScore
-    private var inningInfo: InningInfo
+    private(set) var Home: Team
+    private(set) var Away: Team
+    private(set) var inningScore: InningScore
+    private(set) var inningInfo: InningInfo
     
     init() {
         self.Home = Team(name: "")

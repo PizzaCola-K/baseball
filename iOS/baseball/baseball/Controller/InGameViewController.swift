@@ -18,7 +18,6 @@ class InGameViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        
         self.dataSource = PitchingHistoryDataSource()
         self.inGameModel = InGameModel()
         super.init(coder: coder)

@@ -9,28 +9,28 @@ import UIKit
 
 class PlayerListDataSource {
     
-    private var dataSource: UITableViewDiffableDataSource<String, String>!
+    private var dataSource: UITableViewDiffableDataSource<Int, Player>!
     
     func setupDataSource(tableView: UITableView) -> Void {
-        self.dataSource = UITableViewDiffableDataSource<String, String>(tableView: tableView, cellProvider: { (tableView, indexPath, string) -> UITableViewCell? in
+        self.dataSource = UITableViewDiffableDataSource<Int, Player>(tableView: tableView, cellProvider: { (tableView, indexPath, player) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerInfo") as! playerInfoCell
-            
+            cell.LabelCollection[0].text = player.name
+            cell.LabelCollection[1].text = "\(player.atBat)"
+            cell.LabelCollection[2].text = "\(player.hits)"
+            cell.LabelCollection[3].text = "\(player.out)"
+            cell.LabelCollection[4].text = "\(player.average)"
             return cell
         })
         var snapshot = self.dataSource.snapshot()
-        snapshot.appendSections(["1"])
+        snapshot.appendSections([0])
         self.dataSource.apply(snapshot)
     }
     
-    func applySnapshot(string: String) {
+    func applySnapshot(players: Players) {
         var snapshot = self.dataSource.snapshot()
-        let items = snapshot.itemIdentifiers(inSection: "1")
-        if items.count == 0 {
-            snapshot.appendItems([string], toSection: "1")
-        } else {
-            snapshot.insertItems([string], beforeItem: items[0])
-        }
-        
+        snapshot.deleteAllItems()
+        snapshot.appendSections([0])
+        snapshot.appendItems(players.players, toSection: 0)
         self.dataSource.apply(snapshot)
     }
 }
