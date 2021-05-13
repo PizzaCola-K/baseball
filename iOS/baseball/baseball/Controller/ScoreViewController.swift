@@ -18,6 +18,7 @@ class ScoreViewController: UIViewController, ScoreViewControllerManageable {
     @IBOutlet weak var customLabel: UILabel!
     @IBOutlet weak var playersScoreTableView: UITableView!
     @IBOutlet weak var teamSegmentControl: UISegmentedControl!
+    @IBOutlet weak var teamScoreView: TeamScoreView!
     
     private let scoreTableViewdelegate: ScoreTableViewDelegate
     private let playerListDataSource: PlayerListDataSource
@@ -41,11 +42,13 @@ class ScoreViewController: UIViewController, ScoreViewControllerManageable {
         super.viewDidLoad()
         self.playerListDataSource.setupDataSource(tableView: playersScoreTableView)
         self.playersScoreTableView.delegate = scoreTableViewdelegate
+        self.playerListDataSource.applySnapshot(players: scoreModel.Away.players)
         self.teamSegmentControl.addTarget(self, action: #selector(tableViewSnapShot), for: .valueChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.teamScoreView.applyTeamScore(homeName: self.scoreModel.Home.name, homeScore: self.scoreModel.Home.score, awayName: self.scoreModel.Away.name, awayScore: self.scoreModel.Away.score)
     }
     
     @IBAction func testadd(_ sender: Any) { //공수교대가 일어날 경우 노란뷰가 추가되는 것을 보기 위한 임시 버튼 액션 함수

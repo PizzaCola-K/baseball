@@ -8,6 +8,7 @@ class PitchingHistory: Decodable {
         case BALL
         case OUT
         case FOUR_BALL
+        case HIT
         case NONE
         
         var value: String {

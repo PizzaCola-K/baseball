@@ -24,8 +24,12 @@ class ScoreTableViewDelegate: NSObject, UITableViewDelegate {
             else if i == 1 {
                 headerViewLabels[i].leadingAnchor.constraint(equalTo: headerViewLabels[i-1].trailingAnchor, constant: 70).isActive = true
             }
-            else {
+            else if i == 4 {
+                print(i)
                 headerViewLabels[i].leadingAnchor.constraint(equalTo: headerViewLabels[i-1].trailingAnchor, constant: 35).isActive = true
+            }
+            else {
+                headerViewLabels[i].leadingAnchor.constraint(equalTo: headerViewLabels[i-1].trailingAnchor, constant: 30).isActive = true
             }
         }
         

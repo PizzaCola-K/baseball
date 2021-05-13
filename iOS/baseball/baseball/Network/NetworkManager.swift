@@ -32,7 +32,7 @@ struct NetworkManager {
     }
     
     static func getRequest<T:Decodable> (needs dataSet : T.Type, closure : @escaping (Result<T,NetworkError>) -> Void) {
-        guard let url = URL.init(string: "http://3.36.239.71/games/2") else {
+        guard let url = URL.init(string: "http://3.36.239.71/games/3") else {
             return
         }
         var request = URLRequest(url: url)
@@ -46,7 +46,7 @@ struct NetworkManager {
     }
     
     static func postRequest<T:Decodable> (needs dataSet : T.Type, closure : @escaping (Result<T,NetworkError>) -> Void) {
-        guard let url = URL.init(string: "http://3.36.239.71/games/2/pitch") else {
+        guard let url = URL.init(string: "http://3.36.239.71/games/3/pitch") else {
             return
         }
         var request = URLRequest(url: url)
