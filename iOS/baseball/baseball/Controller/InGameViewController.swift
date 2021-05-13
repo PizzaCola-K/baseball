@@ -26,12 +26,13 @@ class InGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource.setupDataSource(tableView: pitchingHistoryTableView)
-        self.inningInfoView.applyBallCount(strike: 2, ball: 2, out: 1)
-        self.inningInfoView.applyBallCount(strike: 0, ball: 0, out: 2)
+//        self.inningInfoView.applyBallCount(strike: 2, ball: 2, out: 1)
+//        self.inningInfoView.applyBallCount(strike: 0, ball: 0, out: 2)
 //        let vc = tabBarController?.viewControllers![1] as! ScoreViewController
 //        self.delegate = vc
-        requestNetwork()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateViews(sender:)), name: InGameModel.updateInGameModel, object: inGameModel)
         
+        requestNetwork()
     }
     
     func decide(team: MyTeam) {
@@ -85,5 +86,16 @@ class InGameViewController: UIViewController {
             }
         }
     }
+    
+    @objc func updateViews(sender: Notification) {
+        
+        self.updateBallCountView()
+    }
+    
+    func updateBallCountView() {
+        let strike = inGameModel.inningInfo.strike
+        let ball = inGameModel.inningInfo.ball
+        let out = inGameModel.inningInfo.out
+        self.inningInfoView.applyBallCount(strike: strike, ball: ball, out: out)
+    }
 }
-

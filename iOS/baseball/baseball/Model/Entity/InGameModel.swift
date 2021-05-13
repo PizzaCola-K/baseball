@@ -2,13 +2,13 @@
 import Foundation
 
 struct InGameModel {
-    private var myTeam: MyTeam
-    private var homeTeamInfo: TeamInfo
-    private var awayTeamInfo: TeamInfo
-    private var inningInfo: InningInfo
-    private var pitcher: Pitcher
-    private var batter: Player
-    private var baseState: [Bool]
+    private(set) var myTeam: MyTeam
+    private(set) var homeTeamInfo: TeamInfo
+    private(set) var awayTeamInfo: TeamInfo
+    private(set) var inningInfo: InningInfo
+    private(set) var pitcher: Pitcher
+    private(set) var batter: Player
+    private(set) var baseState: [Bool]
     
     init() {
         self.myTeam = .None
@@ -31,6 +31,9 @@ struct InGameModel {
         self.pitcher.updatePitcher(number: data.game.home.pitcher.number, pitches: data.game.home.pitcher.pitches)
         self.batter.updatePlayer(name: data.game.batter.description/*temp*/, atBat: data.game.away.players[data.game.batter].atBat, hits: data.game.away.players[data.game.batter].hits, out: data.game.away.players[data.game.batter].out, average: data.game.away.players[data.game.batter].average)
         self.baseState = data.game.baseState
+        self.inningInfo.ball = 2
+        NotificationCenter.default.post(name: InGameModel.updateInGameModel, object: self)
+
     }
     
     func 확인쓰(){
@@ -45,4 +48,8 @@ struct InGameModel {
 //        inningInfo.getbatter == batterindex
 //        teamteamFind(batter:) -> post
 //    }
+}
+
+extension InGameModel {
+    static let updateInGameModel = Notification.Name("updateInGameModel")
 }

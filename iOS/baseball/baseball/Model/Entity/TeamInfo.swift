@@ -3,7 +3,7 @@ import Foundation
 
 struct TeamInfo {
     private(set) var name: String
-    private var score: Int
+    private(set) var score: Int
     
     init() {
         self.name = ""
