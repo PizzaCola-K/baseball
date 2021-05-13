@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct InningScore: Decodable {
+class InningScore: Decodable {
     private var home: [Int]
     private var away: [Int]
     

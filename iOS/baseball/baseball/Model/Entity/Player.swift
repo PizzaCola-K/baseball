@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct Player: Decodable {
+class Player: Decodable {
     private(set) var name: String
     private(set) var atBat: Int
     private(set) var hits: Int
@@ -16,7 +16,7 @@ struct Player: Decodable {
         self.average = 0
     }
     
-    mutating func updatePlayer(name: String, atBat: Int, hits: Int, out: Int, average: Float) {
+    func updatePlayer(name: String, atBat: Int, hits: Int, out: Int, average: Float) {
         self.name = name
         self.atBat = atBat
         self.hits = hits

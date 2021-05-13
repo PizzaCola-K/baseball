@@ -321,13 +321,64 @@
                                 <rect key="frame" x="16" y="284" width="382" height="514"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="test" id="H0Y-mb-N0n">
-                                        <rect key="frame" x="0.0" y="28" width="382" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerInfo" id="H0Y-mb-N0n" customClass="playerInfoCell" customModule="baseball" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="382" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H0Y-mb-N0n" id="9P7-LR-qRV">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Joi-nJ-WKa">
+                                                    <rect key="frame" x="10" y="13" width="37.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zm3-BF-uG8">
+                                                    <rect key="frame" x="117.5" y="13" width="37.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xU-d5-9Uf">
+                                                    <rect key="frame" x="190" y="13" width="37.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9G1-DI-Mfj">
+                                                    <rect key="frame" x="262.5" y="13" width="37.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mH4-Sa-opf">
+                                                    <rect key="frame" x="335" y="13" width="37.5" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9xU-d5-9Uf" firstAttribute="centerY" secondItem="Zm3-BF-uG8" secondAttribute="centerY" id="AcB-Ps-mHV"/>
+                                                <constraint firstItem="Joi-nJ-WKa" firstAttribute="centerY" secondItem="9P7-LR-qRV" secondAttribute="centerY" id="Cw9-gi-JBb"/>
+                                                <constraint firstItem="Joi-nJ-WKa" firstAttribute="leading" secondItem="9P7-LR-qRV" secondAttribute="leading" constant="10" id="GR5-aG-gka"/>
+                                                <constraint firstItem="9G1-DI-Mfj" firstAttribute="centerY" secondItem="9xU-d5-9Uf" secondAttribute="centerY" id="MmZ-w1-2vh"/>
+                                                <constraint firstItem="Zm3-BF-uG8" firstAttribute="centerY" secondItem="Joi-nJ-WKa" secondAttribute="centerY" id="UiQ-hT-0kE"/>
+                                                <constraint firstItem="mH4-Sa-opf" firstAttribute="leading" secondItem="9G1-DI-Mfj" secondAttribute="trailing" constant="35" id="ngB-Er-PwP"/>
+                                                <constraint firstItem="9xU-d5-9Uf" firstAttribute="leading" secondItem="Zm3-BF-uG8" secondAttribute="trailing" constant="35" id="t3t-hV-ZWb"/>
+                                                <constraint firstItem="Zm3-BF-uG8" firstAttribute="leading" secondItem="Joi-nJ-WKa" secondAttribute="trailing" constant="70" id="vhd-5n-dIL"/>
+                                                <constraint firstItem="9G1-DI-Mfj" firstAttribute="leading" secondItem="9xU-d5-9Uf" secondAttribute="trailing" constant="35" id="x2y-Dl-mLc"/>
+                                                <constraint firstItem="mH4-Sa-opf" firstAttribute="centerY" secondItem="9G1-DI-Mfj" secondAttribute="centerY" id="yMB-vu-5Nm"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outletCollection property="LabelCollection" destination="Joi-nJ-WKa" collectionClass="NSMutableArray" id="g4o-Zl-QzA"/>
+                                            <outletCollection property="LabelCollection" destination="Zm3-BF-uG8" collectionClass="NSMutableArray" id="xYw-2E-Gga"/>
+                                            <outletCollection property="LabelCollection" destination="9xU-d5-9Uf" collectionClass="NSMutableArray" id="lnw-aQ-cxl"/>
+                                            <outletCollection property="LabelCollection" destination="9G1-DI-Mfj" collectionClass="NSMutableArray" id="zLu-8y-AkW"/>
+                                            <outletCollection property="LabelCollection" destination="mH4-Sa-opf" collectionClass="NSMutableArray" id="XFP-hq-3bA"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

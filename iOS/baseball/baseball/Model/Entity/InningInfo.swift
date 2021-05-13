@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct InningInfo {
+class InningInfo {
     private(set) var currentInning: Int
     private(set) var attackTeam: String
     private(set) var batter: Int
@@ -20,7 +20,7 @@ struct InningInfo {
         self.pitchingHistory = []
     }
     
-    mutating func updateData(currentInning: Int, attackTeam: String, batter: Int, strike: Int, ball: Int, out: Int, history: [PitchingHistory]) {
+    func updateData(currentInning: Int, attackTeam: String, batter: Int, strike: Int, ball: Int, out: Int, history: [PitchingHistory]) {
         self.currentInning = currentInning
         self.attackTeam = attackTeam
         self.batter = batter
@@ -28,5 +28,9 @@ struct InningInfo {
         self.ball = ball
         self.out = out
         self.pitchingHistory = history
+    }//history update 필요!!!
+    
+    func updateattackTeam(attackTeam: String) {
+        self.attackTeam = attackTeam
     }
 }

@@ -102,5 +102,6 @@ class GameSelectViewController: UIViewController, GameSelectViewControllerManage
         animation.toValue = CGPoint(x: myCalayer.position.x, y: view.bounds.size.height - view.bounds.size.width / 4)
         animation.duration = 1
         myCalayer.add(animation, forKey: "move down")
+//        myCalayer.position = CGPoint(x: myCalayer.position.x, y: view.bounds.size.height - view.bounds.size.width / 4)
     }
 }
