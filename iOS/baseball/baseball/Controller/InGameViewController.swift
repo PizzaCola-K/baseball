@@ -72,7 +72,6 @@ class InGameViewController: UIViewController {
         NetworkManager.getRequest(needs: JSONRequestDTO.self) { (result) in
             switch result {
             case .success(let data):
-                print(data)
                 self.inGameModel.updateGame(data: data)
                 self.delegate.initScoreModel(with: data)
             case .failure(let error):
