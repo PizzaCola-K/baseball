@@ -6,7 +6,7 @@ class InningInfo {
     private(set) var attackTeam: String
     private(set) var batter: Int
     private(set) var strike: Int
-    var ball: Int
+    private(set) var ball: Int
     private(set) var out: Int
     private(set) var pitchingHistory: [PitchingHistory]
     

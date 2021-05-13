@@ -14,7 +14,7 @@ class PitchingHistoryDataSource {
     func setupDataSource(tableView: UITableView) -> Void {
         self.dataSource = UITableViewDiffableDataSource<Int, PitchingHistory>(tableView: tableView, cellProvider: { (tableView, indexPath, pitchingHistory) -> UITableViewCell? in
             let cell = tableView.dequeueReusableCell(withIdentifier: "pitchingHistoryCell") as! HistoryTableViewCell
-            cell.configureCell(history: pitchingHistory, indexPath: indexPath)
+            cell.configureCell(history: pitchingHistory, indexPath: indexPath, rowNumber: tableView.numberOfRows(inSection: 0))
             return cell
         })
         var snapshot = self.dataSource.snapshot()

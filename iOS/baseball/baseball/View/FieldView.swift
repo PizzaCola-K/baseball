@@ -5,7 +5,6 @@ class FieldView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        print(self.frame, self.bounds)
     }
     
     override func draw(_ rect: CGRect) {

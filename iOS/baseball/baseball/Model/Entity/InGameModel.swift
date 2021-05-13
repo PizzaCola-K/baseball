@@ -27,7 +27,7 @@ class InGameModel {
      func updateGame(data: JSONRequestDTO) {
         self.homeTeamInfo.updateInfo(name: data.game.home.name, score: data.game.home.score)
         self.awayTeamInfo.updateInfo(name: data.game.away.name, score: data.game.away.score)
-        self.inningInfo.updateData(currentInning: data.game.inning, attackTeam: data.game.state, batter: data.game.batter, strike: data.game.strike, ball: data.game.ball, out: data.game.out, history: data.game.history)
+        self.inningInfo.updateData(currentInning: data.game.inning, attackTeam: data.game.state, batter: data.game.batter, strike: data.game.strike, ball: data.game.ball, out: data.game.out, history: data.game.history.reversed())
         if self.inningInfo.attackTeam == "AWAY" {
             self.pitcher.updatePitcher(name: data.game.home.pitcher.name, number: data.game.home.pitcher.number, pitches: data.game.home.pitcher.pitches)
         } else {

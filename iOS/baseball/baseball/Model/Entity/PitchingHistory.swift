@@ -2,16 +2,25 @@
 import Foundation
 
 class PitchingHistory: Decodable {
+    
+    enum Pitch: String {
+        case STRIKE
+        case BALL
+        case OUT
+        case FOUR_BALL
+        case NONE
+        
+        var value: String {
+            return rawValue
+        }
+    }
+    
     private(set) var pitch: String
     private(set) var state: String
     
     init() {
         self.pitch = ""
         self.state = ""
-    }
-    
-    func updatePitchingHistory(pitch: String, status: String) {
-        
     }
 }
 

@@ -8,6 +8,7 @@ class InGameViewController: UIViewController {
     @IBOutlet weak var fieldView: FieldView!
     @IBOutlet weak var teamScoreView: TeamScoreView!
     @IBOutlet weak var playerInfoView: PlayerInfoView!
+    @IBOutlet weak var pitchButton: UIButton!
     
     private var dataSource: PitchingHistoryDataSource
     private var delegate: ScoreViewControllerManageable!
@@ -88,6 +89,19 @@ class InGameViewController: UIViewController {
         }
     }
     
+    
+    @IBAction func pressedPitch(_ sender: UIButton) {
+        NetworkManager.postRequest(needs: JSONRequestDTO.self) { (result) in
+            switch result {
+            case .success(let data):
+                self.inGameModel.updateGame(data: data)
+                self.delegate.initScoreModel(with: data)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     @objc func updateViews(sender: Notification) {
         DispatchQueue.main.async {
             self.updateBallCountView()
@@ -95,6 +109,7 @@ class InGameViewController: UIViewController {
             self.updateTeamScoreView()
             self.updatePlayerInfoView()
             self.updateHistoryTableView()
+            self.playLottieAnimation()
         }
     }
     
@@ -132,5 +147,30 @@ class InGameViewController: UIViewController {
     func updateHistoryTableView() {
         let history = self.inGameModel.inningInfo.pitchingHistory
         self.dataSource.applySnapshot(pitchingHistory: history)
+    }
+    
+    func playLottieAnimation() {
+        if self.inGameModel.inningInfo.pitchingHistory.count == 0 {
+            return
+        }
+        let pitch = self.inGameModel.inningInfo.pitchingHistory[0].pitch
+        switch pitch {
+        case PitchingHistory.Pitch.STRIKE.value:
+            self.strikeAnimation.animationSpeed = 1.3
+            self.view.addSubview(strikeAnimation)
+            self.pitchButton.isHidden = true
+            strikeAnimation.play { [weak self] _ in
+                self?.removeAnimationView()
+                self?.pitchButton.isHidden = false
+            }
+//        case Pitch.BALL.value:
+//            return Pitch.BALL
+//        case Pitch.OUT.value:
+//            return Pitch.OUT
+//        case Pitch.FOUR_BALL.value:
+//            return Pitch.FOUR_BALL
+        default:
+            break
+        }
     }
 }

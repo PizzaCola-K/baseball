@@ -24,15 +24,15 @@ class HistoryTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configureCell(history: PitchingHistory, indexPath: IndexPath) {
+    func configureCell(history: PitchingHistory, indexPath: IndexPath, rowNumber: Int) {
         self.pitching.text = history.pitch
         self.ballCount.text = history.state
-        self.totalCount.attributedText = intToAttributedString(number: indexPath.row)
+        self.totalCount.attributedText = intToAttributedString(number: rowNumber - indexPath.row)
     }
     
     func intToAttributedString(number: Int) -> NSMutableAttributedString {
         let imageAttachment = NSTextAttachment()
-        imageAttachment.image = UIImage(systemName: "\(number + 1).circle.fill")
+        imageAttachment.image = UIImage(systemName: "\(number).circle.fill")
         
         let totalCount = NSMutableAttributedString(string: "")
         totalCount.append(NSAttributedString(attachment: imageAttachment))

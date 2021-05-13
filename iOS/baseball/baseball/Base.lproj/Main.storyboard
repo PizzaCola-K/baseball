@@ -321,7 +321,7 @@
                                 <rect key="frame" x="16" y="272" width="382" height="526"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PlayerInfo" id="H0Y-mb-N0n" customClass="playerInfoCell" customModule="baseball" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="382" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="382" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="H0Y-mb-N0n" id="9P7-LR-qRV">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="43.5"/>
@@ -499,10 +499,10 @@
                                     <constraint firstItem="pEP-0o-4Ov" firstAttribute="centerY" secondItem="0eV-WE-66E" secondAttribute="centerY" id="zX0-Ue-r8P"/>
                                 </constraints>
                                 <connections>
-                                    <outlet property="awayName" destination="9Kx-UB-MIm" id="0tx-WE-a5X"/>
-                                    <outlet property="awayScore" destination="ABP-n9-0JK" id="iPO-PW-r6G"/>
-                                    <outlet property="homeName" destination="gsW-7A-bwN" id="yNw-4Q-1uO"/>
-                                    <outlet property="homeScore" destination="dCB-y9-VBG" id="mGN-rx-wIX"/>
+                                    <outlet property="awayName" destination="gsW-7A-bwN" id="Hs2-Nm-QNy"/>
+                                    <outlet property="awayScore" destination="dCB-y9-VBG" id="FhC-F4-qLS"/>
+                                    <outlet property="homeName" destination="9Kx-UB-MIm" id="vpd-e8-w4M"/>
+                                    <outlet property="homeScore" destination="ABP-n9-0JK" id="mds-Uz-ZCa"/>
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PZl-hv-nvX" customClass="InningInfoView" customModule="baseball" customModuleProvider="target">
@@ -582,25 +582,33 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3d-un-dze" customClass="FieldView" customModule="baseball" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="100" width="414" height="231"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3cq-JO-G35">
-                                                <rect key="frame" x="192" y="83" width="30" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <state key="normal" title="ball"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k49-f8-p0l">
+                                                <rect key="frame" x="132" y="90.5" width="150" height="50"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="1jD-fZ-vcI"/>
+                                                    <constraint firstAttribute="width" constant="150" id="tl8-AH-e0R"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                                <state key="normal" title="PITCH">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <integer key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="ball:" destination="wTF-5l-Qj5" eventType="touchUpInside" id="XQk-b9-h6W"/>
+                                                    <action selector="pressedPitch:" destination="wTF-5l-Qj5" eventType="touchUpInside" id="vG1-Gt-RlK"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="k49-f8-p0l" firstAttribute="centerX" secondItem="U3d-un-dze" secondAttribute="centerX" id="16L-oY-3Yh"/>
+                                            <constraint firstItem="k49-f8-p0l" firstAttribute="centerY" secondItem="U3d-un-dze" secondAttribute="centerY" id="JXz-Fi-mnA"/>
+                                        </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37E-cZ-Zsp">
-                                        <rect key="frame" x="188" y="150" width="38" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="strike"/>
-                                        <connections>
-                                            <action selector="Pitch:" destination="wTF-5l-Qj5" eventType="touchUpInside" id="glM-4b-1tT"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
@@ -814,6 +822,7 @@
                     <connections>
                         <outlet property="fieldView" destination="U3d-un-dze" id="B3b-Hg-Yaj"/>
                         <outlet property="inningInfoView" destination="PZl-hv-nvX" id="RqU-6q-BME"/>
+                        <outlet property="pitchButton" destination="k49-f8-p0l" id="a7F-F5-8j4"/>
                         <outlet property="pitchingHistoryTableView" destination="hQ6-dm-PD7" id="EsK-47-VFt"/>
                         <outlet property="playerInfoView" destination="CrL-ZU-mvS" id="KNa-Vp-hqQ"/>
                         <outlet property="teamScoreView" destination="0eV-WE-66E" id="gq0-Nf-Xbc"/>
