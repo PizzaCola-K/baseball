@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct InGameModel {
+class InGameModel {
     private(set) var myTeam: MyTeam
     private(set) var homeTeamInfo: TeamInfo
     private(set) var awayTeamInfo: TeamInfo
@@ -20,34 +20,56 @@ struct InGameModel {
         self.baseState = []
     }
     
-    mutating func set(team: MyTeam) {
+     func set(team: MyTeam) {
         self.myTeam = team
     }
     
-    mutating func updateGame(data: JSONRequestDTO) {
+     func updateGame(data: JSONRequestDTO) {
         self.homeTeamInfo.updateInfo(name: data.game.home.name, score: data.game.home.score)
         self.awayTeamInfo.updateInfo(name: data.game.away.name, score: data.game.away.score)
-        self.inningInfo.updateData(currentInning: data.game.inning, attackTeam: data.game.state, batter: data.game.batter, strike: data.game.strike, ball: data.game.ball, out: data.game.out)
-        self.pitcher.updatePitcher(name: data.game.home.pitcher.name, number: data.game.home.pitcher.number, pitches: data.game.home.pitcher.pitches)
-        self.batter.updatePlayer(name: data.game.batter.description/*temp*/, atBat: data.game.away.players[data.game.batter].atBat, hits: data.game.away.players[data.game.batter].hits, out: data.game.away.players[data.game.batter].out, average: data.game.away.players[data.game.batter].average)
+        self.inningInfo.updateData(currentInning: data.game.inning, attackTeam: data.game.state, batter: data.game.batter, strike: data.game.strike, ball: data.game.ball, out: data.game.out, history: data.game.history)
+        if self.inningInfo.attackTeam == "AWAY" {
+            self.pitcher.updatePitcher(name: data.game.home.pitcher.name, number: data.game.home.pitcher.number, pitches: data.game.home.pitcher.pitches)
+        } else {
+            self.pitcher.updatePitcher(name: data.game.away.pitcher.name, number: data.game.away.pitcher.number, pitches: data.game.away.pitcher.pitches)
+        }
+        self.batter.updatePlayer(name: data.game.batterInfo.name, atBat: data.game.batterInfo.atBat, hits: data.game.batterInfo.hits, out: data.game.batterInfo.out, average: data.game.batterInfo.average)
         self.baseState = data.game.baseState
-        self.inningInfo.ball = 2
         NotificationCenter.default.post(name: InGameModel.updateInGameModel, object: self)
-
     }
     
-    func 확인쓰(){
-        print("===================", self.baseState)
+    func currentInning() -> String {
+        let away = "AWAY"
+        var currentInningInfo = ""
+        currentInningInfo += "\(self.inningInfo.currentInning)회"
+        
+        if self.inningInfo.attackTeam == away {
+            currentInningInfo += "초"
+        } else {
+            currentInningInfo += "말"
+        }
+        
+        return currentInningInfo
     }
     
-//    func updateInGameView선수() {
-//        let tempTeam: Team = Team()
-//        tempTeam.update(team: data.team){
-//
-//        }
-//        inningInfo.getbatter == batterindex
-//        teamteamFind(batter:) -> post
-//    }
+    func myCurrentInningState() -> String {
+        return self.inningInfo.attackTeam == self.myTeam.rawValue ? "공격" : "수비"
+    }
+    
+    func currentBatterGrade() -> String {
+        return "\(self.batter.atBat)타석 \(self.batter.hits)안타"
+    }
+    
+    func currentMyState() -> MyTeam {
+        switch myTeam {
+        case .AWAY:
+            return myTeam.rawValue == inningInfo.attackTeam ? myTeam : .HOME
+        case .HOME:
+            return myTeam.rawValue == inningInfo.attackTeam ? myTeam : .AWAY
+        case .None:
+            return .None
+        }
+    }
 }
 
 extension InGameModel {

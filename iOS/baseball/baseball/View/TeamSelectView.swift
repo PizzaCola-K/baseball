@@ -31,9 +31,9 @@ class TeamSelectView: UIView {
     
     @IBAction func pressedTeamButton(_ sender: UIButton) {
         if sender == homeTeamButton, let selectedTeamCompletion = selectedTeamCompletion {
-            selectedTeamCompletion(.Home)
+            selectedTeamCompletion(.HOME)
         } else if sender == awayTeamButton, let selectedTeamCompletion = selectedTeamCompletion {
-            selectedTeamCompletion(.Away)
+            selectedTeamCompletion(.AWAY)
         }
         selectedTeamCompletion = nil
     }

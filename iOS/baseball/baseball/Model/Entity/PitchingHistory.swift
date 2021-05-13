@@ -2,8 +2,8 @@
 import Foundation
 
 class PitchingHistory: Decodable {
-    private var pitch: String
-    private var state: String
+    private(set) var pitch: String
+    private(set) var state: String
     
     init() {
         self.pitch = ""
@@ -12,5 +12,16 @@ class PitchingHistory: Decodable {
     
     func updatePitchingHistory(pitch: String, status: String) {
         
+    }
+}
+
+extension PitchingHistory: Hashable, Equatable {
+    static func == (lhs: PitchingHistory, rhs: PitchingHistory) -> Bool {
+        return lhs.pitch == rhs.pitch && lhs.state == rhs.state
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(pitch)
+        hasher.combine(state)
     }
 }
