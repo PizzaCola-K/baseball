@@ -9,6 +9,7 @@ class InGameModel {
     private(set) var pitcher: Pitcher
     private(set) var batter: Player
     private(set) var baseState: [Bool]
+    private var isDataChanged: Bool
     
     init() {
         self.myTeam = .None
@@ -18,6 +19,7 @@ class InGameModel {
         self.pitcher = Pitcher()
         self.batter = Player()
         self.baseState = []
+        self.isDataChanged = true
     }
     
      func set(team: MyTeam) {
@@ -25,6 +27,7 @@ class InGameModel {
     }
     
      func updateGame(data: JSONRequestDTO) {
+        self.isDataChanged = self.isChanged(data: data.game.history.reversed())
         self.homeTeamInfo.updateInfo(name: data.game.home.name, score: data.game.home.score)
         self.awayTeamInfo.updateInfo(name: data.game.away.name, score: data.game.away.score)
         self.inningInfo.updateData(currentInning: data.game.inning, attackTeam: data.game.state, batter: data.game.batter, strike: data.game.strike, ball: data.game.ball, out: data.game.out, history: data.game.history.reversed())
@@ -35,7 +38,9 @@ class InGameModel {
         }
         self.batter.updatePlayer(name: data.game.batterInfo.name, atBat: data.game.batterInfo.atBat, hits: data.game.batterInfo.hits, out: data.game.batterInfo.out, average: data.game.batterInfo.average)
         self.baseState = data.game.baseState
-        NotificationCenter.default.post(name: InGameModel.updateInGameModel, object: self)
+        if isDataChanged {
+            NotificationCenter.default.post(name: InGameModel.updateInGameModel, object: self)
+        }
     }
     
     func currentInning() -> String {
@@ -65,10 +70,14 @@ class InGameModel {
         case .AWAY:
             return myTeam.rawValue == inningInfo.attackTeam ? myTeam : .HOME
         case .HOME:
-            return myTeam.rawValue == inningInfo.attackTeam ? myTeam : .AWAY
+            return myTeam.rawValue == inningInfo.attackTeam ? .AWAY : myTeam
         case .None:
             return .None
         }
+    }
+    
+    func isChanged(data: [PitchingHistory]) -> Bool {
+        return (self.inningInfo.pitchingHistory == data && self.pitcher.pitches != 0) ? false : true
     }
 }
 

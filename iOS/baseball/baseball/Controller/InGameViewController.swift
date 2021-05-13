@@ -35,6 +35,7 @@ class InGameViewController: UIViewController {
         self.delegate = scoreViewController
         NotificationCenter.default.addObserver(self, selector: #selector(updateViews(sender:)), name: InGameModel.updateInGameModel, object: inGameModel)
         requestNetwork()
+        asyncStart()
     }
     
     func decide(team: MyTeam) {
@@ -80,7 +81,6 @@ class InGameViewController: UIViewController {
         NetworkManager.getRequest(needs: JSONRequestDTO.self) { (result) in
             switch result {
             case .success(let data):
-                print(data)
                 self.inGameModel.updateGame(data: data)
                 self.delegate.initScoreModel(with: data)
             case .failure(let error):
@@ -110,6 +110,7 @@ class InGameViewController: UIViewController {
             self.updatePlayerInfoView()
             self.updateHistoryTableView()
             self.playLottieAnimation()
+            self.changePitchingButton()
         }
     }
     
@@ -171,6 +172,26 @@ class InGameViewController: UIViewController {
 //            return Pitch.FOUR_BALL
         default:
             break
+        }
+    }
+    
+    func changePitchingButton() {
+        let myTurn = self.inGameModel.currentMyState()
+        if myTurn == .HOME {
+            self.pitchButton.isHidden = false
+        } else {
+            self.pitchButton.isHidden = true
+        }
+    }
+    
+    func asyncStart() {
+        DispatchQueue.global().async {
+            while true {
+                if self.inGameModel.currentMyState() == .AWAY {
+                    sleep(1)
+                    self.requestNetwork()
+                }
+            }
         }
     }
 }
