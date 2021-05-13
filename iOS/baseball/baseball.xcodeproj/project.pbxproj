@@ -21,7 +21,7 @@
 		829CFA492640379C00D9F635 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 829CFA472640379C00D9F635 /* LaunchScreen.storyboard */; };
 		829CFA542640421900D9F635 /* MatchUpCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829CFA532640421900D9F635 /* MatchUpCell.swift */; };
 		829CFA572640434600D9F635 /* ViewControllerSegueManageable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829CFA562640434600D9F635 /* ViewControllerSegueManageable.swift */; };
-		82A5CC2C264903F9007C8BC4 /* PitchingHistoryTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5CC2B264903F9007C8BC4 /* PitchingHistoryTableViewDelegate.swift */; };
+		82A5CC2C264903F9007C8BC4 /* ScoreTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A5CC2B264903F9007C8BC4 /* ScoreTableViewDelegate.swift */; };
 		82A9642A2643C6BA00E70A89 /* BaseballGameDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A964292643C6BA00E70A89 /* BaseballGameDTO.swift */; };
 		82AD8EFF264BA53700B32477 /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82AD8EFE264BA53700B32477 /* OAuthManager.swift */; };
 		82DB031E264C301C008EF251 /* InGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82DB031D264C301C008EF251 /* InGameModel.swift */; };
@@ -45,6 +45,9 @@
 		CEA5D62826438B2100745C9D /* PitchingHistoryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5D62726438B2100745C9D /* PitchingHistoryDataSource.swift */; };
 		CEA5D62B26438DA100745C9D /* testCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5D62A26438DA100745C9D /* testCell.swift */; };
 		CEA5D634264407C400745C9D /* InningInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA5D633264407C400745C9D /* InningInfoView.swift */; };
+		CEB6294A264CEA4C005F9DB6 /* TeamScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB62949264CEA4C005F9DB6 /* TeamScoreView.swift */; };
+		CEB6294D264CFF88005F9DB6 /* PlayerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB6294C264CFF88005F9DB6 /* PlayerInfoView.swift */; };
+		CEB62950264D2DE1005F9DB6 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB6294F264D2DE1005F9DB6 /* HistoryTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,7 +67,7 @@
 		829CFA4A2640379C00D9F635 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		829CFA532640421900D9F635 /* MatchUpCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUpCell.swift; sourceTree = "<group>"; };
 		829CFA562640434600D9F635 /* ViewControllerSegueManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSegueManageable.swift; sourceTree = "<group>"; };
-		82A5CC2B264903F9007C8BC4 /* PitchingHistoryTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchingHistoryTableViewDelegate.swift; sourceTree = "<group>"; };
+		82A5CC2B264903F9007C8BC4 /* ScoreTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreTableViewDelegate.swift; sourceTree = "<group>"; };
 		82A964292643C6BA00E70A89 /* BaseballGameDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseballGameDTO.swift; sourceTree = "<group>"; };
 		82AD8EFE264BA53700B32477 /* OAuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OAuthManager.swift; sourceTree = "<group>"; };
 		82DB031D264C301C008EF251 /* InGameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InGameModel.swift; sourceTree = "<group>"; };
@@ -90,6 +93,9 @@
 		CEA5D62726438B2100745C9D /* PitchingHistoryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PitchingHistoryDataSource.swift; sourceTree = "<group>"; };
 		CEA5D62A26438DA100745C9D /* testCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testCell.swift; sourceTree = "<group>"; };
 		CEA5D633264407C400745C9D /* InningInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InningInfoView.swift; sourceTree = "<group>"; };
+		CEB62949264CEA4C005F9DB6 /* TeamScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamScoreView.swift; sourceTree = "<group>"; };
+		CEB6294C264CFF88005F9DB6 /* PlayerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInfoView.swift; sourceTree = "<group>"; };
+		CEB6294F264D2DE1005F9DB6 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,10 +172,13 @@
 				CEA5D62A26438DA100745C9D /* testCell.swift */,
 				CEA5D633264407C400745C9D /* InningInfoView.swift */,
 				CE893BD12647D933009F9195 /* FieldView.swift */,
-				82A5CC2B264903F9007C8BC4 /* PitchingHistoryTableViewDelegate.swift */,
+				82A5CC2B264903F9007C8BC4 /* ScoreTableViewDelegate.swift */,
 				CE96E180264BAAE0001C4F5C /* TeamSelectView.swift */,
 				CE96E184264BE657001C4F5C /* TeamSelectView.xib */,
 				8276F7A62649790A000BCAB8 /* ScoreTableViewCell.swift */,
+				CEB62949264CEA4C005F9DB6 /* TeamScoreView.swift */,
+				CEB6294C264CFF88005F9DB6 /* PlayerInfoView.swift */,
+				CEB6294F264D2DE1005F9DB6 /* HistoryTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -382,11 +391,13 @@
 				CE96E181264BAAE0001C4F5C /* TeamSelectView.swift in Sources */,
 				82DB031E264C301C008EF251 /* InGameModel.swift in Sources */,
 				829CFA542640421900D9F635 /* MatchUpCell.swift in Sources */,
+				CEB6294A264CEA4C005F9DB6 /* TeamScoreView.swift in Sources */,
 				CEA103DC26413F2C008BA763 /* InningScore.swift in Sources */,
 				82FD39E92643DB71002AD9A2 /* TeamDTO.swift in Sources */,
+				CEB6294D264CFF88005F9DB6 /* PlayerInfoView.swift in Sources */,
 				827E60342644FA160054F5E2 /* MyTeam.swift in Sources */,
 				CEA103C726413962008BA763 /* Player.swift in Sources */,
-				82A5CC2C264903F9007C8BC4 /* PitchingHistoryTableViewDelegate.swift in Sources */,
+				82A5CC2C264903F9007C8BC4 /* ScoreTableViewDelegate.swift in Sources */,
 				82DB49E926404C76008B1EC0 /* InGameViewController.swift in Sources */,
 				CE96E18C264BF3FB001C4F5C /* ScoreModel.swift in Sources */,
 				CE893BD22647D933009F9195 /* FieldView.swift in Sources */,
@@ -394,6 +405,7 @@
 				CEA103CD26413AF2008BA763 /* Team.swift in Sources */,
 				8276F7A72649790A000BCAB8 /* ScoreTableViewCell.swift in Sources */,
 				CEA5D6252643850700745C9D /* URLManager.swift in Sources */,
+				CEB62950264D2DE1005F9DB6 /* HistoryTableViewCell.swift in Sources */,
 				CEA103D026413BE5008BA763 /* Pitcher.swift in Sources */,
 				CEA103D926413E91008BA763 /* PitchingHistory.swift in Sources */,
 				828F89A02644D07D00F928F0 /* BaseState.swift in Sources */,

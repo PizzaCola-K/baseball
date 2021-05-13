@@ -8,8 +8,8 @@
 import Foundation
 
 enum MyTeam: String {
-    case Home
-    case Away
+    case HOME
+    case AWAY
     case None
     
     var Value: String {

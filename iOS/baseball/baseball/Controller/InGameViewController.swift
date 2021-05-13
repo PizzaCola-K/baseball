@@ -6,7 +6,9 @@ class InGameViewController: UIViewController {
     @IBOutlet weak var pitchingHistoryTableView: UITableView!
     @IBOutlet weak var inningInfoView: InningInfoView!
     @IBOutlet weak var fieldView: FieldView!
-        
+    @IBOutlet weak var teamScoreView: TeamScoreView!
+    @IBOutlet weak var playerInfoView: PlayerInfoView!
+    
     private var dataSource: PitchingHistoryDataSource
     private var delegate: VCDelegate!
     private var inGameModel: InGameModel
@@ -26,10 +28,6 @@ class InGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource.setupDataSource(tableView: pitchingHistoryTableView)
-//        self.inningInfoView.applyBallCount(strike: 2, ball: 2, out: 1)
-//        self.inningInfoView.applyBallCount(strike: 0, ball: 0, out: 2)
-//        let vc = tabBarController?.viewControllers![1] as! ScoreViewController
-//        self.delegate = vc
         NotificationCenter.default.addObserver(self, selector: #selector(updateViews(sender:)), name: InGameModel.updateInGameModel, object: inGameModel)
         
         requestNetwork()
@@ -80,7 +78,6 @@ class InGameViewController: UIViewController {
             case .success(let data):
                 print(data)
                 self.inGameModel.updateGame(data: data)
-                self.inGameModel.확인쓰()
             case .failure(let error):
                 print(error)
             }
@@ -88,8 +85,13 @@ class InGameViewController: UIViewController {
     }
     
     @objc func updateViews(sender: Notification) {
-        
-        self.updateBallCountView()
+        DispatchQueue.main.async {
+            self.updateBallCountView()
+            self.updateInningView()
+            self.updateTeamScoreView()
+            self.updatePlayerInfoView()
+            self.updateHistoryTableView()
+        }
     }
     
     func updateBallCountView() {
@@ -97,5 +99,34 @@ class InGameViewController: UIViewController {
         let ball = inGameModel.inningInfo.ball
         let out = inGameModel.inningInfo.out
         self.inningInfoView.applyBallCount(strike: strike, ball: ball, out: out)
+    }
+    
+    func updateInningView() {
+        let currentInning = self.inGameModel.currentInning()
+        let currentState = self.inGameModel.myCurrentInningState()
+        self.inningInfoView.applyCurrentInningInfo(inning: currentInning, myState: currentState)
+    }
+    
+    func updateTeamScoreView() {
+        let homeName = self.inGameModel.homeTeamInfo.name
+        let homeScore = self.inGameModel.homeTeamInfo.score
+        let awayName = self.inGameModel.awayTeamInfo.name
+        let awayScore = self.inGameModel.awayTeamInfo.score
+        self.teamScoreView.applyTeamScore(homeName: homeName, homeScore: homeScore, awayName: awayName, awayScore: awayScore)
+    }
+    
+    func updatePlayerInfoView() {
+        let pitcherName = self.inGameModel.pitcher.name
+        let pitchingBall = "#\(self.inGameModel.pitcher.pitches)"
+        let batterName = self.inGameModel.batter.name
+        let batterGrade = self.inGameModel.currentBatterGrade()
+        let myTurn = self.inGameModel.currentMyState()
+        self.playerInfoView.applyPlayerInfo(pitcherName: pitcherName, pitchingBallCount: pitchingBall, batterName: batterName, batterGrade: batterGrade)
+        self.playerInfoView.applyMyTurn(turn: myTurn)
+    }
+    
+    func updateHistoryTableView() {
+        let history = self.inGameModel.inningInfo.pitchingHistory
+        self.dataSource.applySnapshot(pitchingHistory: history)
     }
 }

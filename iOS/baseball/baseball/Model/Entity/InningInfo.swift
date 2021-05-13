@@ -8,7 +8,7 @@ struct InningInfo {
     private(set) var strike: Int
     var ball: Int
     private(set) var out: Int
-    private(set) var pitchingHistory: PitchingHistory
+    private(set) var pitchingHistory: [PitchingHistory]
     
     init() {
         self.currentInning = 0
@@ -17,15 +17,16 @@ struct InningInfo {
         self.strike = 0
         self.ball = 0
         self.out = 0
-        self.pitchingHistory = PitchingHistory()
+        self.pitchingHistory = []
     }
     
-    mutating func updateData(currentInning: Int, attackTeam: String, batter: Int, strike: Int, ball: Int, out: Int) {
+    mutating func updateData(currentInning: Int, attackTeam: String, batter: Int, strike: Int, ball: Int, out: Int, history: [PitchingHistory]) {
         self.currentInning = currentInning
         self.attackTeam = attackTeam
         self.batter = batter
         self.strike = strike
         self.ball = ball
         self.out = out
-    }//history update 필요!!!
+        self.pitchingHistory = history
+    }
 }
