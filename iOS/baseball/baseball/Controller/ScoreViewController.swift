@@ -7,28 +7,28 @@
 
 import UIKit
 
-protocol VCDelegate {
-    func send(string: String)
+protocol ScoreViewControllerManageable {
+    func initScoreModel(with: JSONRequestDTO)
 }
 
-class ScoreViewController: UIViewController, VCDelegate {
-    func send(string: String) {
-    }
+class ScoreViewController: UIViewController, ScoreViewControllerManageable {
     
     @IBOutlet weak var homeScore: UIStackView!
     @IBOutlet weak var awayScore: UIStackView!
     @IBOutlet weak var customLabel: UILabel!
     @IBOutlet weak var playersScoreTableView: UITableView!
     
-//    private var scoreModel: ScoreViewEntity
     private let scoreTableViewdelegate: ScoreTableViewDelegate
+    private let scoreModel: ScoreModel
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        self.scoreModel = ScoreModel()
         self.scoreTableViewdelegate = ScoreTableViewDelegate()
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
+        self.scoreModel = ScoreModel()
         self.scoreTableViewdelegate = ScoreTableViewDelegate()
         super.init(coder: coder)
     }
@@ -46,7 +46,6 @@ class ScoreViewController: UIViewController, VCDelegate {
         self.addLabel(title: "0", ishome: true)
     }
     
-    
     func addLabel(title: String, ishome: Bool) {
         let tempLabel: UILabel = UILabel()
         tempLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -56,5 +55,9 @@ class ScoreViewController: UIViewController, VCDelegate {
             tempLabel.heightAnchor.constraint(equalTo: tempLabel.widthAnchor, multiplier: 1).isActive = true
             tempLabel.backgroundColor = .yellow
         }
+    }
+    
+    func initScoreModel(with data: JSONRequestDTO) {
+        self.scoreModel.updateScoreModel(home: data.game.home, away: data.game.away, inningScore: data.game.inningScore, attackTeam: data.game.state)
     }
 }

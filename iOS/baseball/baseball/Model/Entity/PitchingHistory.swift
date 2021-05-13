@@ -1,13 +1,13 @@
 
 import Foundation
 
-struct PitchingHistory: Decodable {
+class PitchingHistory: Decodable {
     private var pitch: String
-    private var status: String
+    private var state: String
     
     init() {
         self.pitch = ""
-        self.status = ""
+        self.state = ""
     }
     
     func updatePitchingHistory(pitch: String, status: String) {

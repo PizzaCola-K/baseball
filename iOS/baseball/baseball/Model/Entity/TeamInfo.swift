@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct TeamInfo {
+class TeamInfo {
     private(set) var name: String
     private(set) var score: Int
     
@@ -10,7 +10,7 @@ struct TeamInfo {
         self.score = 0
     }
     
-    mutating func updateInfo(name: String, score: Int) {
+    func updateInfo(name: String, score: Int) {
         self.name = name
         self.score = score
     }

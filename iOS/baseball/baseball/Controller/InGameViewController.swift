@@ -8,7 +8,7 @@ class InGameViewController: UIViewController {
     @IBOutlet weak var fieldView: FieldView!
         
     private var dataSource: PitchingHistoryDataSource
-    private var delegate: VCDelegate!
+    private var delegate: ScoreViewControllerManageable!
     private var inGameModel: InGameModel
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -18,6 +18,7 @@ class InGameViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
+        
         self.dataSource = PitchingHistoryDataSource()
         self.inGameModel = InGameModel()
         super.init(coder: coder)
@@ -28,10 +29,9 @@ class InGameViewController: UIViewController {
         dataSource.setupDataSource(tableView: pitchingHistoryTableView)
 //        self.inningInfoView.applyBallCount(strike: 2, ball: 2, out: 1)
 //        self.inningInfoView.applyBallCount(strike: 0, ball: 0, out: 2)
-//        let vc = tabBarController?.viewControllers![1] as! ScoreViewController
-//        self.delegate = vc
+        let scoreViewController = self.tabBarController?.viewControllers![1] as! ScoreViewController
+        self.delegate = scoreViewController
         NotificationCenter.default.addObserver(self, selector: #selector(updateViews(sender:)), name: InGameModel.updateInGameModel, object: inGameModel)
-        
         requestNetwork()
     }
     
@@ -80,7 +80,7 @@ class InGameViewController: UIViewController {
             case .success(let data):
                 print(data)
                 self.inGameModel.updateGame(data: data)
-                self.inGameModel.확인쓰()
+                self.delegate.initScoreModel(with: data)
             case .failure(let error):
                 print(error)
             }

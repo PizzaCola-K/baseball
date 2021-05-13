@@ -18,11 +18,12 @@ struct GameDTO: Decodable {
     let inning: Int
     let state: String
     let batter: Int
+    let batterInfo: Player
     let strike: Int
     let ball: Int
     let out: Int
     
     let baseState: [Bool]
-    let history: [String]
+    let history: [PitchingHistory]
     let inningScore: InningScore
 }

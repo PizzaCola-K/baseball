@@ -1,19 +1,20 @@
 //
-//  PitchingHistoryDataSource.swift
+//  PlayerListDataSource.swift
 //  baseball
 //
-//  Created by user on 2021/05/06.
+//  Created by 박정하 on 2021/05/13.
 //
 
 import UIKit
 
-class PitchingHistoryDataSource {
-
+class PlayerListDataSource {
+    
     private var dataSource: UITableViewDiffableDataSource<String, String>!
     
     func setupDataSource(tableView: UITableView) -> Void {
         self.dataSource = UITableViewDiffableDataSource<String, String>(tableView: tableView, cellProvider: { (tableView, indexPath, string) -> UITableViewCell? in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "testcell") as! playerInfoCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerInfo") as! playerInfoCell
+            
             return cell
         })
         var snapshot = self.dataSource.snapshot()
