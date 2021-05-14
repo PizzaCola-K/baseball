@@ -88,17 +88,32 @@ class GameSelectViewController: UIViewController, GameSelectViewControllerManage
     
     func makeGameListView(data: GameListModel) {
         matchupCell.updateCellLabel(homeTeam: data.games[0].home, awayTeam: data.games[0].away, gameNumber: "Game \(data.games[0].gameId)")
+        DispatchQueue.main.async {
+            let imageView = UIImageView(image: UIImage(named: "versusbaseball"))
+            imageView.contentMode = .scaleToFill
+            imageView.layer.cornerRadius = 10
+            imageView.layer.masksToBounds = true
+            imageView.frame = self.matchupCell.frame
+            self.matchupCell.insertSubview(imageView, at: 0)
+        }
         for i in 1..<data.games.count {
             DispatchQueue.main.async {
                 let gameView: MatchUpCell = MatchUpCell.init()
                 gameView.set(delegate: self)
                 gameView.backgroundColor = .systemGray4
                 gameView.layer.cornerRadius = 10
+                gameView.layer.masksToBounds = true
                 gameView.alpha = 0.7
-                let homelabel = self.makeLabel(title: data.games[i].home, size: 17)
-                let awaylabel = self.makeLabel(title: data.games[i].away, size: 17)
+                let imageView = UIImageView(image: UIImage(named: "versusbaseball"))
+                imageView.layer.cornerRadius = 10
+                imageView.layer.masksToBounds = true
+                imageView.frame = self.matchupCell.frame
+                imageView.contentMode = .scaleToFill
+                gameView.addSubview(imageView)
+                let homelabel = self.makeLabel(title: data.games[i].home, size: 18)
+                let awaylabel = self.makeLabel(title: data.games[i].away, size: 18)
                 let gameidlabel = self.makeLabel(title: "Game \(data.games[i].gameId)", size: 14)
-                let vsLabel = self.makeLabel(title: "vs", size: 17)
+                let vsLabel = self.makeLabel(title: "vs", size: 50)
                 gameView.addSubview(awaylabel)
                 gameView.addSubview(homelabel)
                 gameView.addSubview(gameidlabel)
@@ -125,8 +140,10 @@ class GameSelectViewController: UIViewController, GameSelectViewControllerManage
     private func makeLabel(title: String, size: CGFloat) -> UILabel {
         let tempLabel: UILabel = UILabel()
         tempLabel.text = title
-        tempLabel.font = .systemFont(ofSize: size)
+        tempLabel.font = .boldSystemFont(ofSize: size)
+        tempLabel.textColor = .black
         tempLabel.sizeToFit()
+        tempLabel.textAlignment = .right
         return tempLabel
     }
     
