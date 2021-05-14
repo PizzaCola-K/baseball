@@ -1,5 +1,6 @@
 import UIKit
 import Lottie
+import AVFoundation
 
 class InGameViewController: UIViewController {
     
@@ -13,6 +14,8 @@ class InGameViewController: UIViewController {
     private var dataSource: PitchingHistoryDataSource
     private var delegate: ScoreViewControllerManageable!
     private var inGameModel: InGameModel
+    private var mainAudioPlayer: AVAudioPlayer = AVAudioPlayer()
+    private var audioPlayer: AVAudioPlayer = AVAudioPlayer()
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         self.dataSource = PitchingHistoryDataSource()
@@ -29,13 +32,14 @@ class InGameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource.setupDataSource(tableView: pitchingHistoryTableView)
-//        self.inningInfoView.applyBallCount(strike: 2, ball: 2, out: 1)
-//        self.inningInfoView.applyBallCount(strike: 0, ball: 0, out: 2)
+        //        self.inningInfoView.applyBallCount(strike: 2, ball: 2, out: 1)
+        //        self.inningInfoView.applyBallCount(strike: 0, ball: 0, out: 2)
         let scoreViewController = self.tabBarController?.viewControllers![1] as! ScoreViewController
         self.delegate = scoreViewController
         NotificationCenter.default.addObserver(self, selector: #selector(updateViews(sender:)), name: InGameModel.updateInGameModel, object: inGameModel)
         requestNetwork()
         asyncStart()
+        SoundManager.playermp3Audio(audioPlayer: &self.mainAudioPlayer, title: "baseballopening")
     }
     
     func decide(team: MyTeam) {
@@ -51,11 +55,6 @@ class InGameViewController: UIViewController {
         animationView.contentMode = .scaleAspectFit
         return animationView
     }()
-    
-    @IBAction func Pitch(_ sender: Any) {
-//        self.view.addSubview(strikeAnimation)
-//
-    }
     
     @IBAction func ball(_ sender: Any) {
         self.view.addSubview(ballAnimation)
@@ -149,14 +148,24 @@ class InGameViewController: UIViewController {
         let pitch = self.inGameModel.inningInfo.pitchingHistory[0].pitch
         switch pitch {
         case PitchingHistory.Pitch.STRIKE.value:
+            audioPlayer.stop()
+            SoundManager.playermp3Audio(audioPlayer: &self.audioPlayer, title: "baseballhit")
             addAnimationView(string: "strike")
         case PitchingHistory.Pitch.BALL.value:
+            audioPlayer.stop()
+            SoundManager.playermp3Audio(audioPlayer: &self.audioPlayer, title: "baseballhit")
             addAnimationView(string: "ball")
         case PitchingHistory.Pitch.OUT.value:
+            audioPlayer.stop()
+            SoundManager.playermp3Audio(audioPlayer: &self.audioPlayer, title: "baseballhit")
             addAnimationView(string: "out")
         case PitchingHistory.Pitch.HIT.value:
+            audioPlayer.stop()
+            SoundManager.playermp3Audio(audioPlayer: &self.audioPlayer, title: "baseballhit")
             addAnimationView(string: "hit")
         case PitchingHistory.Pitch.FOUR_BALL.value:
+            audioPlayer.stop()
+            SoundManager.playermp3Audio(audioPlayer: &self.audioPlayer, title: "baseballhit")
             addAnimationView(string: "fourball")
         default:
             break
@@ -182,7 +191,7 @@ class InGameViewController: UIViewController {
             }
         }
     }
-            
+    
     private func addAnimationView(string: String) {
         self.lottieAnimationView.frame = CGRect(x: 0, y: 0, width: self.fieldView.frame.width, height: self.fieldView.frame.height)
         lottieAnimationView.animation = Animation.named(string)
@@ -191,9 +200,16 @@ class InGameViewController: UIViewController {
         lottieAnimationView.animationSpeed = 1.3
         self.fieldView.addSubview(lottieAnimationView)
         self.pitchButton.isHidden = true
-        lottieAnimationView.play { [weak self] _ in
-            self?.removeAnimationView()
-            self?.pitchButton.isHidden = false
+        if self.inGameModel.currentMyState() == .AWAY {
+            lottieAnimationView.play { [weak self] _ in
+                self?.removeAnimationView()
+            }
+        }
+        else {
+            lottieAnimationView.play { [weak self] _ in
+                self?.removeAnimationView()
+                self?.pitchButton.isHidden = false
+            }
         }
     }
 }

@@ -17,6 +17,8 @@ class MatchUpCell: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCell(_:)))
+        self.addGestureRecognizer(tapGesture)
     }
     
     //storyBoard!!
@@ -35,8 +37,10 @@ class MatchUpCell: UIView {
     }
     
     internal func updateCellLabel(homeTeam: String, awayTeam: String, gameNumber: String) {
-        self.homeLabel.text = homeTeam
-        self.awayLabel.text = awayTeam
-        self.gameNumber.text = gameNumber
+        DispatchQueue.main.async {
+            self.awayLabel.text = awayTeam
+            self.homeLabel.text = homeTeam
+            self.gameNumber.text = gameNumber
+        }
     }
 }

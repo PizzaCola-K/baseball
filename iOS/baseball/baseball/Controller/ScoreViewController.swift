@@ -88,13 +88,15 @@ class ScoreViewController: UIViewController, ScoreViewControllerManageable {
     }
     
     @objc func updateScoreViews() {
-        for i in 0..<homeScore.subviews.count {
-            guard let scoreLabel = self.homeScore.subviews[i] as? UILabel else { return }
-            scoreLabel.text = String(scoreModel.inningScore.home[i])
-        }
-        for i in 0..<awayScore.subviews.count {
-            guard let scoreLabel = self.awayScore.subviews[i] as? UILabel else { return }
-            scoreLabel.text = String(scoreModel.inningScore.away[i])
+        DispatchQueue.main.async {
+            for i in 0..<self.homeScore.subviews.count {
+                guard let scoreLabel = self.homeScore.subviews[i] as? UILabel else { return }
+                scoreLabel.text = String(self.scoreModel.inningScore.home[i])
+            }
+            for i in 0..<self.awayScore.subviews.count {
+                guard let scoreLabel = self.awayScore.subviews[i] as? UILabel else { return }
+                scoreLabel.text = String(self.scoreModel.inningScore.away[i])
+            }
         }
     }
 }

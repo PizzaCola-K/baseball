@@ -8,10 +8,14 @@
 import UIKit
 //import OctoKit
 import AuthenticationServices
+import AVFoundation
 
 class GameSelectViewController: UIViewController, GameSelectViewControllerManageable {
   
+    @IBOutlet weak var gameListStackView: UIStackView!
     @IBOutlet weak var matchupCell: MatchUpCell!
+    private var audioPlayer: AVAudioPlayer = AVAudioPlayer()
+    private var gameList: [MatchUpCell] = []
 
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nil, bundle: nil)
@@ -24,8 +28,10 @@ class GameSelectViewController: UIViewController, GameSelectViewControllerManage
     override func viewDidLoad() {
         super.viewDidLoad()
         self.matchupCell.set(delegate: self)
-        playOpacityAnimation()
-        playMoveAnimation()
+//        playOpacityAnimation().
+//        playMoveAnimation()
+        SoundManager.playermp3Audio(audioPlayer: &audioPlayer, title: "yells")
+        print("===========",requestGameList())
     }
     
     // 질문하기
@@ -39,6 +45,7 @@ class GameSelectViewController: UIViewController, GameSelectViewControllerManage
             return
         }
         tabbarFirstViewController.decide(team: selectedTeamInfo)
+        audioPlayer.stop()
     }
     
     func moveToTeamSelectView() {
@@ -55,6 +62,17 @@ class GameSelectViewController: UIViewController, GameSelectViewControllerManage
         }
     }
     
+    private func requestGameList() {
+        NetworkManager.getGamelistRequest(needs: GameListModel.self) { (result) in
+            switch result {
+            case .success(let data):
+                self.makeGameListView(data: data)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     func dismissTeamSelectView(view: TeamSelectView) {
         view.pressedCancel { (bool) -> (Void) in
             if bool {
@@ -66,6 +84,50 @@ class GameSelectViewController: UIViewController, GameSelectViewControllerManage
                 }
             }
         }
+    }
+    
+    func makeGameListView(data: GameListModel) {
+        matchupCell.updateCellLabel(homeTeam: data.games[0].home, awayTeam: data.games[0].away, gameNumber: "Game \(data.games[0].gameId)")
+        for i in 1..<data.games.count {
+            DispatchQueue.main.async {
+                let gameView: MatchUpCell = MatchUpCell.init()
+                gameView.set(delegate: self)
+                gameView.backgroundColor = .systemGray4
+                gameView.layer.cornerRadius = 10
+                gameView.alpha = 0.7
+                let homelabel = self.makeLabel(title: data.games[i].home, size: 17)
+                let awaylabel = self.makeLabel(title: data.games[i].away, size: 17)
+                let gameidlabel = self.makeLabel(title: "Game \(data.games[i].gameId)", size: 14)
+                let vsLabel = self.makeLabel(title: "vs", size: 17)
+                gameView.addSubview(awaylabel)
+                gameView.addSubview(homelabel)
+                gameView.addSubview(gameidlabel)
+                gameView.addSubview(vsLabel)
+                gameidlabel.translatesAutoresizingMaskIntoConstraints = false
+                gameidlabel.centerXAnchor.constraint(equalTo: gameView.centerXAnchor).isActive = true
+                gameidlabel.topAnchor.constraint(equalTo: gameView.topAnchor, constant: 10).isActive = true
+                gameidlabel.textColor = .systemRed
+                vsLabel.translatesAutoresizingMaskIntoConstraints = false
+                vsLabel.centerXAnchor.constraint(equalTo: gameView.centerXAnchor).isActive = true
+                vsLabel.centerYAnchor.constraint(equalTo: gameView.centerYAnchor).isActive = true
+                homelabel.translatesAutoresizingMaskIntoConstraints = false
+                homelabel.trailingAnchor.constraint(equalTo: vsLabel.leadingAnchor, constant: -30).isActive = true
+                homelabel.centerYAnchor.constraint(equalTo: vsLabel.centerYAnchor).isActive = true
+                awaylabel.translatesAutoresizingMaskIntoConstraints = false
+                awaylabel.leadingAnchor.constraint(equalTo: vsLabel.trailingAnchor, constant: 30).isActive = true
+                awaylabel.centerYAnchor.constraint(equalTo: vsLabel.centerYAnchor).isActive = true
+                self.gameList.append(gameView)
+                self.gameListStackView.addArrangedSubview(gameView)
+            }
+        }
+    }
+    
+    private func makeLabel(title: String, size: CGFloat) -> UILabel {
+        let tempLabel: UILabel = UILabel()
+        tempLabel.text = title
+        tempLabel.font = .systemFont(ofSize: size)
+        tempLabel.sizeToFit()
+        return tempLabel
     }
     
     private func playOpacityAnimation() -> Void {

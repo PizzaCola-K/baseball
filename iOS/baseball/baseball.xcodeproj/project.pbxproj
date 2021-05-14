@@ -15,6 +15,12 @@
 		8276F7A526496CFF000BCAB8 /* ball.json in Resources */ = {isa = PBXBuildFile; fileRef = 8276F7A426496CFF000BCAB8 /* ball.json */; };
 		827E60342644FA160054F5E2 /* MyTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827E60332644FA160054F5E2 /* MyTeam.swift */; };
 		828F89A02644D07D00F928F0 /* BaseState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828F899F2644D07D00F928F0 /* BaseState.swift */; };
+		8293BC8D264E23F200E40A0F /* baseballhit.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8293BC8C264E23F200E40A0F /* baseballhit.mp3 */; };
+		8293BC8F264E244D00E40A0F /* yells.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8293BC8E264E244D00E40A0F /* yells.mp3 */; };
+		8293BC91264E251900E40A0F /* baseballopening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8293BC90264E251900E40A0F /* baseballopening.mp3 */; };
+		8293BC93264E3B7A00E40A0F /* GameListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8293BC92264E3B7A00E40A0F /* GameListModel.swift */; };
+		8293BC95264E3B8500E40A0F /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8293BC94264E3B8500E40A0F /* SoundManager.swift */; };
+		8293BC97264E3E0300E40A0F /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8293BC96264E3E0300E40A0F /* GameModel.swift */; };
 		829CFA3D2640379B00D9F635 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829CFA3C2640379B00D9F635 /* AppDelegate.swift */; };
 		829CFA3F2640379B00D9F635 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829CFA3E2640379B00D9F635 /* SceneDelegate.swift */; };
 		829CFA412640379B00D9F635 /* GameSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 829CFA402640379B00D9F635 /* GameSelectViewController.swift */; };
@@ -62,6 +68,12 @@
 		8276F7A426496CFF000BCAB8 /* ball.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ball.json; sourceTree = "<group>"; };
 		827E60332644FA160054F5E2 /* MyTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeam.swift; sourceTree = "<group>"; };
 		828F899F2644D07D00F928F0 /* BaseState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseState.swift; sourceTree = "<group>"; };
+		8293BC8C264E23F200E40A0F /* baseballhit.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = baseballhit.mp3; sourceTree = "<group>"; };
+		8293BC8E264E244D00E40A0F /* yells.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = yells.mp3; sourceTree = "<group>"; };
+		8293BC90264E251900E40A0F /* baseballopening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = baseballopening.mp3; sourceTree = "<group>"; };
+		8293BC92264E3B7A00E40A0F /* GameListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListModel.swift; sourceTree = "<group>"; };
+		8293BC94264E3B8500E40A0F /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		8293BC96264E3E0300E40A0F /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		829CFA392640379B00D9F635 /* baseball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = baseball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		829CFA3C2640379B00D9F635 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		829CFA3E2640379B00D9F635 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +145,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8293BC8B264E23D400E40A0F /* Sound */ = {
+			isa = PBXGroup;
+			children = (
+				8293BC8C264E23F200E40A0F /* baseballhit.mp3 */,
+				8293BC8E264E244D00E40A0F /* yells.mp3 */,
+				8293BC90264E251900E40A0F /* baseballopening.mp3 */,
+				8293BC94264E3B8500E40A0F /* SoundManager.swift */,
+			);
+			path = Sound;
+			sourceTree = "<group>";
+		};
 		829CFA302640379B00D9F635 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +177,7 @@
 		829CFA3B2640379B00D9F635 /* baseball */ = {
 			isa = PBXGroup;
 			children = (
+				8293BC8B264E23D400E40A0F /* Sound */,
 				82D7B3D42647C55B002AD9F8 /* Animation */,
 				82E20E1D264267A0006C80DF /* Network */,
 				829CFA552640432C00D9F635 /* Protocols */,
@@ -231,6 +255,8 @@
 				828F899F2644D07D00F928F0 /* BaseState.swift */,
 				827E60332644FA160054F5E2 /* MyTeam.swift */,
 				CE96E18B264BF3FB001C4F5C /* ScoreModel.swift */,
+				8293BC92264E3B7A00E40A0F /* GameListModel.swift */,
+				8293BC96264E3E0300E40A0F /* GameModel.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -333,9 +359,12 @@
 				8276F7A526496CFF000BCAB8 /* ball.json in Resources */,
 				829CFA492640379C00D9F635 /* LaunchScreen.storyboard in Resources */,
 				829CFA462640379C00D9F635 /* Assets.xcassets in Resources */,
+				8293BC8F264E244D00E40A0F /* yells.mp3 in Resources */,
 				CE96E185264BE657001C4F5C /* TeamSelectView.xib in Resources */,
+				8293BC91264E251900E40A0F /* baseballopening.mp3 in Resources */,
 				8226636C264D9B0D000C2ABB /* fourball.json in Resources */,
 				829CFA442640379B00D9F635 /* Main.storyboard in Resources */,
+				8293BC8D264E23F200E40A0F /* baseballhit.mp3 in Resources */,
 				8226636A264D9224000C2ABB /* hit.json in Resources */,
 				8276F79D26496958000BCAB8 /* strike.json in Resources */,
 				82266368264D8EAF000C2ABB /* out.json in Resources */,
@@ -392,6 +421,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEA103CA264139E5008BA763 /* Players.swift in Sources */,
+				8293BC93264E3B7A00E40A0F /* GameListModel.swift in Sources */,
 				82DB49EB26404C87008B1EC0 /* ScoreViewController.swift in Sources */,
 				829CFA412640379B00D9F635 /* GameSelectViewController.swift in Sources */,
 				82A9642A2643C6BA00E70A89 /* BaseballGameDTO.swift in Sources */,
@@ -407,7 +437,9 @@
 				CEB6294A264CEA4C005F9DB6 /* TeamScoreView.swift in Sources */,
 				CEA103DC26413F2C008BA763 /* InningScore.swift in Sources */,
 				82FD39E92643DB71002AD9A2 /* TeamDTO.swift in Sources */,
+				8293BC95264E3B8500E40A0F /* SoundManager.swift in Sources */,
 				CEB6294D264CFF88005F9DB6 /* PlayerInfoView.swift in Sources */,
+				8293BC97264E3E0300E40A0F /* GameModel.swift in Sources */,
 				827E60342644FA160054F5E2 /* MyTeam.swift in Sources */,
 				CEA103C726413962008BA763 /* Player.swift in Sources */,
 				82A5CC2C264903F9007C8BC4 /* ScoreTableViewDelegate.swift in Sources */,

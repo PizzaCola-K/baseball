@@ -45,6 +45,20 @@ struct NetworkManager {
         }).resume()
     }
     
+    static func getGamelistRequest<T:Decodable> (needs dataSet : T.Type, closure : @escaping (Result<T,NetworkError>) -> Void) {
+        guard let url = URL.init(string: "http://3.36.239.71/games") else {
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+
+        URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            let result = NetworkManager.decode(form : T.self, data: data)
+            
+            closure(result)
+        }).resume()
+    }
+    
     static func postRequest<T:Decodable> (needs dataSet : T.Type, closure : @escaping (Result<T,NetworkError>) -> Void) {
         guard let url = URL.init(string: "http://3.36.239.71/games/5/pitch") else {
             return
