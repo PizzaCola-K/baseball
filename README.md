@@ -13,12 +13,6 @@
 - 공격과 수비가 비동기적으로 동작한다.
 - 지명타자 없이 투수가 타격을 한다.
 
-## 배포 주소 
-
-http://3.36.239.71/games      
-
-http://3.36.239.71/apidocs/
-
 ## 백로그
 - iOS: https://github.com/PizzaCola-K/baseball/projects/2
 - BE: https://github.com/PizzaCola-K/baseball/projects/3
